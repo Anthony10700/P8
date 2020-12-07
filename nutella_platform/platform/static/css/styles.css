@@ -6083,7 +6083,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #C45525 !important;
+  background-color: var(--orange) !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -6211,7 +6211,7 @@ button.bg-dark:focus {
 }
 
 .border-primary {
-  border-color: #C45525 !important;
+  border-color: var(--orange) !important;
 }
 
 .border-secondary {
@@ -9785,7 +9785,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #C45525 !important;
+  color: var(--orange) !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -10041,7 +10041,7 @@ hr.light {
   color: #C45525;
 }
 #mainNav .navbar-nav .nav-item .nav-link.active {
-  color: #C45525 !important;
+  color: var(--orange) !important;
 }
 @media (min-width: 992px) {
   #mainNav {
@@ -10163,20 +10163,77 @@ header.masthead h1 {
 
 .buttonsearch
 {
-  color : #E8A75D;
+  color : white;
   font-weight: bold;
   font-size: 17px;
   text-align: center;
-  background-color: var(--orange);
-  border-color: var(orange);
+  background-color: #E8A75D;
   border-width: 3px;
-  border: var(--orange)
+  border: #E8A75D
   
 }
 
 .buttonsearch:hover
 {
-  background-color: var(--orange);
-  border-color: var(orange);
-  border: var(--orange)
+  color : var(--orange);
+  font-weight: bold;
+  font-size: 17px;
+  text-align: center;
+  background-color: #E8A75D;
+  border-width: 3px;
+  border: #E8A75D
+}
+
+.buttonsearch-nav
+{
+  color : white;
+  font-weight: bold;
+  font-size: 17px;
+  text-align: center;
+  background-color: #E8A75D;
+  border-width: 3px;
+  border: #E8A75D
+
+}
+.buttonsearch-nav:hover
+{
+  color : var(--orange);
+  font-weight: bold;
+  font-size: 17px;
+  text-align: center;
+  background-color: #E8A75D;
+  border-width: 3px;
+  border: #E8A75D
+}
+
+p , h1 ,h2
+{
+  font-family: "Scope One", sans-serif;
+}
+
+.form-control.mr-sm-2.h-75
+{
+  background-color: rgba(158, 158, 158, 0.575);
+  color: #E8A75D;
+  
+}
+.form-control.mr-sm-2.h-75::placeholder
+{
+  
+  color: #E8A75D;
+  
+}
+
+.form-control.mr-sm-2.col-8.text-center
+{
+  background-color: rgba(128, 128, 128, 0.575);
+  color: #E8A75D;
+
+}
+
+.form-control.mr-sm-2.col-8.text-center::placeholder
+{
+ 
+  color: #E8A75D;
+
 }
