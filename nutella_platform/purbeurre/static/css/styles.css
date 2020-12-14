@@ -10102,6 +10102,7 @@ header.masthead {
   background-attachment: scroll;
   background-size: cover;
 }
+
 header.masthead h1 {
   font-size: 2.25rem;
 }
@@ -10259,3 +10260,8 @@ header.sign_back {
 }
 
 
+.img_nav_hover:hover
+{
+  width:28px;
+  height:28px;
+}

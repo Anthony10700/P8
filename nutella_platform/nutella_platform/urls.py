@@ -27,10 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('sign_in.html', views.sign_in, name="sign_in"),
     path('connection.html', views.connect),
-    path('account.html', views.account),
-    path('deconnection.html', views.logout_view)
-    
-
+    path('account.html', views.account,  name="account"),
+    path('deconnection.html', views.logout_view),
+    path('history.html', views.history)
 ]
 
 if settings.DEBUG:

@@ -7,9 +7,13 @@
 
     <div class="container ">
         <div class="row justify-content-center">
-            <div class="row justify-content-center ">
+            <div class="row justify-content-center col-8">
+              {% if err_show %}
+                <b style="margin-bottom: 3rem;">{{ err_show }}</b>
+              {% endif %}
                 <div class="col-12 text-center ">
               
+                 
                   <form action="/connection.html" method="post">
                     {% csrf_token %}
                     
