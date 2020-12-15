@@ -6,8 +6,8 @@ from django.contrib.auth.hashers import make_password
 class CustomUserCreationForm(forms.Form):
     inputUsername = forms.CharField(widget=forms.TextInput(attrs={'id':'inputUsername'}) ,min_length=2, max_length=150,required=True)
     inputemail = forms.EmailField(widget=forms.EmailInput(attrs={'id':'inputemail'}),required=True )
-    inputPassword1 = forms.CharField(widget=forms.PasswordInput(attrs={'id':'inputPassword1'}) , min_length=4, max_length=150)
-    inputPassword2 = forms.CharField(widget=forms.PasswordInput(attrs={'id':'inputPassword2'}) , min_length=4, max_length=150)
+    inputPassword1 = forms.CharField(widget=forms.PasswordInput(attrs={'id':'inputPassword1'}) , min_length=4, max_length=150,required=True)
+    inputPassword2 = forms.CharField(widget=forms.PasswordInput(attrs={'id':'inputPassword2'}) , min_length=4, max_length=150,required=True)
     inputNom = forms.CharField(widget=forms.TextInput(attrs={'id':'inputNom'}) ,min_length=2, max_length=150)
     inputprenom = forms.CharField(widget=forms.TextInput(attrs={'id':'inputprenom'}) ,min_length=2, max_length=150)
 

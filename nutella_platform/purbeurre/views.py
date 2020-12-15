@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 # TODO: Voir la responsivité sur la hauteur du footer, et avec les form
 # Create your views here.
+
 def index(request):
     context = {'title' : "Pur Beurre"}
     return render(request, 'purbeurre/index.html', context=context)
@@ -18,7 +19,7 @@ def index(request):
 def sign_in(request):
     if not request.user.is_authenticated:
         if request.method == 'POST':
-            print(request.POST)
+            
             form = CustomUserCreationForm(request.POST)
             
             if form.is_valid():
@@ -26,9 +27,10 @@ def sign_in(request):
                     form.clean_password2()
                     form.clean_email()
                     form.clean_speudo()
-                    form.save()
-                    messages.success(request, 'Account created successfully')
-                    return redirect('sign_in')
+                    user = form.save()
+                    login(request, user)
+                    # messages.success(request, 'Account created successfully')
+                    return redirect('account')
 
                 except ValidationError as err:
                     messages.error(request, err.message)
