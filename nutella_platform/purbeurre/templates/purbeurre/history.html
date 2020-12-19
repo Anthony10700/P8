@@ -1,37 +1,71 @@
-{% extends "purbeurre/base.html" %}
+{% extends "purbeurre/base.html" %} {% block content %} {% load static %}
 
-{% block content %}
-{% load static %}
+<div class="result" id="for_result">
 
-<header class="sign_back">
+    <div class="container col-8">
 
-    <div class="container ">
-        <div class="row justify-content-center">
-            <div class="row justify-content-center ">
-                <div class="col-12 text-center ">
-              
+        <div class="row justify-content-center  col-12">
+            <div class="col-12 text-center ">
 
-                    
-                    <img src="{% static '/img/profil.png' %}" alt="..." class="border rounded-circle " width="150px">
 
-                    <hr class="divider_sign" />
-                    
-                   
+
+                <img src="{% static '/img/profil.png' %}" alt="..." class="border rounded-circle " width="150px">
+
+                <hr class="divider_sign" />
+                <h4>Vos aliments sauvegardés sont : </h4>
+
+                <div class="row justify-content-center mt-5">
+                    {% for article in articles_list %}
+
+                    <div class="card col-lg-3 col-md-5 col-8 card_result">
+                        <a href="/show_product.html/?id={{article.id}}&search={{ aliment_search }}" style="height:50%;">
+                            <div class="img_nutri_result">
+                                <img src="{% static '/img/' %}{{article.nutriscore_grade}}.svg" alt="">
+
+                            </div>
+                            <div class="img_div_result">
+                                <img src="{{ article.image_url }}" class="card-img-top " alt="">
+
+                            </div>
+                        </a>
+                        <div class="card-body card-body-article">
+                            <h5 class="card-title">{{article.name}}</h5>
+                            <!-- <p class="card-text">Nutriscore : {{article.nutriscore_grade.upper}}</p> -->
+                            <p class="card-text">Categories: {{article.categories.name}}</p>
+                            <form action="/unsave.html" method="post" class="button_card_art">
+                                {% csrf_token %}
+                                <input type="hidden" name="search" value="{{ aliment_search }}">
+
+                                <button type="submit" class="btn btn-primary" name="id" value="{{article.id}}"><i
+                                            class="fa fa-floppy-o"> Retirer</i></button>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+
+                    {% empty %}
+                    <h1>Sorry, no articles.</h1>
+                    {% endfor %}
 
                 </div>
-         
-              
+
+
             </div>
-        </div>
-            
 
 
         </div>
 
-        
+
+
+
     </div>
 
-</header>
+
+
+
+</div>
 
 
 

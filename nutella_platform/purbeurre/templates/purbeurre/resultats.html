@@ -1,0 +1,91 @@
+{% extends "purbeurre/base.html" %} {% block content %} {% load static %}
+
+<div class="result" id="for_result">
+
+    <div class="container col-8">
+
+        <div class="row justify-content-center ">
+            <div class="col-12 text-center ">
+
+                <h1 class="mt-2">Votre aliment cherché est : {{ aliment_search }}</h1>
+                <hr class="divider_sign" />
+
+                <h4>Vous pouvez remplacer cet aliment par : </h4>
+
+                {% if messages %}
+                <div class="alert alert-secondary col-12" role="alert" style="margin-top: 50px;">
+
+                    <div id="errors">
+                        <div class="inner">
+                            {% for message in messages %} {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+                            <h4>Il y a des erreurs :</h4>
+                            <ul>
+                                <li>{{ message }}</li>
+                            </ul>
+                        </div>
+                        {% endif %} {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+
+                        <h4>SUCCESS : </h4>
+                        <ul>
+                            <li>{{ message }}</li>
+                        </ul>
+                        {% endif %} {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {% endif %}
+
+            <div class="row justify-content-center mt-5">
+                {% for article in articles_list %}
+
+                <div class="card col-lg-3 col-md-5 col-8 card_result">
+                    <a href="/show_product.html/?id={{article.id}}&search={{ aliment_search }}" style="height:50%;">
+                        <div class="img_nutri_result">
+                            <img src="{% static '/img/' %}{{article.nutriscore_grade}}.svg" alt="">
+
+                        </div>
+                        <div class="img_div_result">
+                            <img src="{{ article.image_url }}" class="card-img-top " alt="">
+
+                        </div>
+                    </a>
+                    <div class="card-body card-body-article ">
+                        <h5 class="card-title">{{article.name}}</h5>
+                        <!-- <p class="card-text">Nutriscore : {{article.nutriscore_grade.upper}}</p> -->
+                        <p class="card-text">Categories: {{article.categories.name}}</p>
+                        <form action="/resultats.html" method="post" class="button_card_art">
+                            {% csrf_token %}
+                            <input type="hidden" name="search" value="{{ aliment_search }}">
+
+                            <button type="submit" class="btn btn-primary " name="id" value="{{article.id}}"><i
+                                    class="fa fa-floppy-o"> Sauvegarder</i></button>
+
+                        </form>
+
+                    </div>
+                </div>
+
+
+                {% empty %}
+                <h1>Sorry, no articles.</h1>
+                {% endfor %}
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

@@ -8,7 +8,7 @@
             "name": "Python : Django",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\manage.py",
+            "program": "${workspaceFolder}\\nutella_platform\\purbeurre\\management\\commands\\import_product.py",
             "args": [
                 "runserver"
             ],

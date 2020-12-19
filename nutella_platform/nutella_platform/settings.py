@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
-    ]
+    'debug_toolbar'
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'nutella_platform.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql', # on utilise l'adaptateur postgresql
-        'NAME': 'nutella_platform', # le nom de notre base de données créée précédemment
-        'USER': 'postgres', # attention : remplacez par votre nom d'utilisateur !!
+        'ENGINE': 'django.db.backends.postgresql',  # on utilise l'adaptateur postgresql
+        'NAME': 'nutella_platform',  # le nom de notre base de données créée précédemment
+        'USER': 'postgres',  # attention : remplacez par votre nom d'utilisateur !!
         'PASSWORD': 'azerty',
         'HOST': '127.0.0.1',
         'PORT': '5432',
