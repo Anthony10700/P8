@@ -19,8 +19,10 @@ class Product(models.Model):
     store = models.CharField(max_length=800, unique=False, null=True)
     nutriscore_grade = models.CharField(max_length=1, unique=False, null=False)
     categories = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    nutriments = models.CharField(max_length=8000, unique=False, null=False)
     user_id = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="save_product", name="save_product")
+
 
 # class Products_save(models.Model):
 

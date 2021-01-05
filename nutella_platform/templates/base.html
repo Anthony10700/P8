@@ -30,17 +30,17 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container">
-            <a href="\index.html">
+            <a href="{% url 'index' %}">
                 <img src="{% static '/img/logo_pur_beurre.png' %}" width="45" height="45" alt="">
             </a>
 
-            <a class="navbar-brand js-scroll-trigger" href="\index.html">
+            <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">
                 Pur Beurre</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
 
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                    <form class="form-inline" action="/resultats.html" method="get">
+                    <form class="form-inline" action="{% url 'resultat' %}" method="get">
 
 
                         <input class="form-control mr-sm-2 h-75 " type="text" placeholder="Chercher" aria-label="Search" id="search-nav" name="search" required>
@@ -48,17 +48,17 @@
                         <button class="btn btn-outline-secondary my-2 my-sm-1 h-75 text-center buttonsearch-nav" type="submit">Chercher</button>
                     </form>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger my-sm-2" href="/sign_in.html">
+                        <a class="nav-link js-scroll-trigger my-sm-2" href="{% url 'sign_in' %}">
                             <img class="img_nav_hover" src="{% static '/img/user.svg' %}" width="25" height="25" title="Inscription">
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger my-sm-2" href="/history.html">
+                        <a class="nav-link js-scroll-trigger my-sm-2" href="{% url 'history' %}">
                             <img class="img_nav_hover" src="{% static '/img/carrot.svg' %}" width="25" height="25" title="Historique">
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger my-sm-2" href="/deconnection.html">
+                        <a class="nav-link js-scroll-trigger my-sm-2" href="{% url 'deconnection' %}">
                             <img class="img_nav_hover" src="{% static '/img/sign-out-alt.svg' %}" width="25" height="25" title="Déconnexion">
                         </a>
                     </li>
@@ -78,10 +78,10 @@
 
             <div class="row justify-content-center">
                 <div class="col-4 text-center ">
-                    <a href="#contact">Contact</a>
+                    <a href="{% url 'index' %}#contact">Contact</a>
                 </div>
                 <div class="col-4 text-center">
-                    <a href="#">Mentions légales</a>
+                    <a href="{% url 'legal_notice' %}">Mentions légales</a>
                 </div>
                 <div class="small text-center text-muted col-4 text-center">Copyright © 2020 - Anthony THILLEROT</div>
 

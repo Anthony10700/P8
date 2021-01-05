@@ -22,20 +22,14 @@ app_name = "purbeurre"
 
 urlpatterns = [
     path('', views.index),
-    path('index.html', views.index),
     path('purbeurre/', include('purbeurre.urls')),
+    path('auth/', include('auth.urls')),
     path('admin/', admin.site.urls),
-    path('sign_in.html', views.sign_in, name="sign_in"),
-    path('connection.html', views.connect),
-    path('account.html', views.account,  name="account"),
-    path('deconnection.html', views.logout_view),
-    path('history.html', views.history),
-    path('resultats.html', views.resultats),
-    path('show_product.html/', views.show_product),
-    path('unsave.html', views.unsave)
-    
+
 
 ]
+
+handler404 = 'purbeurre.views.page_not_found_view'
 
 if settings.DEBUG:
     import debug_toolbar

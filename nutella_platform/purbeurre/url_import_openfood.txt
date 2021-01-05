@@ -1,0 +1,10 @@
+https://fr.openfoodfacts.org/categorie/boissons-a-la-canneberge.json
+https://fr.openfoodfacts.org/categorie/boissons-a-l-orange.json
+https://fr.openfoodfacts.org/categorie/jus-de-fruits.json
+https://fr.openfoodfacts.org/categorie/nectars-de-fruits.json
+https://fr.openfoodfacts.org/categorie/sodas-aux-fruits.json
+https://fr.openfoodfacts.org/categorie/boissons-chaudes.json
+https://fr.openfoodfacts.org/categorie/boissons-au-cafe.json
+https://fr.openfoodfacts.org/categorie/tisanes-infusees.json
+https://fr.openfoodfacts.org/categorie/boissons-au-the.json
+https://fr.openfoodfacts.org/categorie/gateaux.json

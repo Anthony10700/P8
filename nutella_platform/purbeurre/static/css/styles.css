@@ -10424,14 +10424,14 @@ header.sign_back {
 #for_result {
     display: block;
     background-color: red;
-    padding-top: 8%;
+    padding-top: 4%;
     background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../../static/img/bg-masthead.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-size: cover;
     color: #E8A75D;
-    min-height: 92%;
+    min-height: 96%;
 }
 
 .info_acc {
@@ -10448,7 +10448,7 @@ header.sign_back {
     position: absolute;
     top: 3px;
     right: 3px;
-    height: 40px;
+    height: 60%;
 }
 
 .card a {
@@ -10462,4 +10462,13 @@ header.sign_back {
     left: 0%;
     right: 0%;
     text-align: center;
+}
+
+.card_description {
+    height: auto;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    background-color: rgba(66, 66, 66, 0.356);
+    padding-left: 0px;
+    padding-right: 0px;
 }

@@ -1,4 +1,4 @@
-{% extends "purbeurre/base.html" %} {% block content %} {% load static %}
+{% extends "base.html" %} {% block content %} {% load static %} {% load utils %}
 
 <div class="result" id="for_result">
 
@@ -25,9 +25,7 @@
 
                         <h4>SUCCESS : </h4>
                         <ul>
-
                             <li>{{ message }}</li>
-
                         </ul>
 
 
@@ -53,8 +51,8 @@
             <div class="row justify-content-center mt-5">
 
 
-                <div class="card col-lg-3 col-md-5 col-8 card_result">
-                    <a href="/show_product.html/?id={{articles_list.id}}" style="height:50%;">
+                <div class="card col-lg-4 col-md-8 col-12 card_result">
+                    <a href="{% url 'show_product' %}?id={{articles_list.id}}" style="height:50%;">
                         <div class="img_nutri_result">
                             <img src="{% static '/img/' %}{{articles_list.nutriscore_grade}}.svg" alt="">
 
@@ -69,7 +67,7 @@
                         <h5 class="card-title">{{articles_list.name}}</h5>
                         <!-- <p class="card-text">Nutriscore : {{article.nutriscore_grade.upper}}</p> -->
                         <p class="card-text">Categories: {{articles_list.categories.name}}</p>
-                        <form action="/resultats.html" method="post" class="button_card_art">
+                        <form action="{% url 'resultat' %}" method="post" class="button_card_art">
                             {% csrf_token %}
                             <input type="hidden" name="search" value="{{ aliment_search }}">
                             <button type="submit" class="btn btn-primary" name="id" value="{{articles_list.id}}"><i
@@ -78,6 +76,93 @@
                         </form>
                     </div>
                 </div>
+
+
+                <div class="card col-lg-7 col-md-8 col-12 card_description">
+                    <div class="card-body card-body-article">
+                        <h4 class="card-title">Informations concernant : {{articles_list.name}}</h4>
+
+                        <a href="{{articles_list.url}}" style="height:50%;" target="_blank">
+
+
+
+                            <h5 class="card-text">Repéres nutritionnels pour 100g : </h5>
+
+
+                            <table class="table table-striped table-light">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Informations nutritionnelles</th>
+                                        <th scope="col">Tel que vendu pour 100 g / 100 ml</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Énergie (kcal)</th>
+                                        <td>
+                                            {{ nutriments|get_item:"energy-kcal_100g" }}
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Énergie</th>
+                                        <td> {{ nutriments|get_item:"energy_100g" }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Matières grasses / Lipides</th>
+                                        <td> {{ nutriments|get_item:"fat_100g" }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">dont Acides gras saturés</th>
+                                        <td> {{ nutriments|get_item:"saturated-fat_100g" }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Glucides</th>
+                                        <td> {{ nutriments|get_item:"carbohydrates_100g" }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">dont Sucres</th>
+                                        <td> {{ nutriments|get_item:"sugars_100g" }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Protéines</th>
+                                        <td> {{ nutriments|get_item:"proteins_100g" }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sel</th>
+                                        <td> {{ nutriments|get_item:"salt_100g" }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sodium</th>
+                                        <td> {{ nutriments|get_item:"sodium_100g" }}</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="row">Score nutritionnel - France</th>
+                                        <td> {{ nutriments|get_item:"nutrition-score-fr_100g" }}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <p class="card-text">Voir la fiche d'OpenFoodFacts</p>
+
+
+                        </a>
+                    </div>
+
+
+                </div>
+
 
 
             </div>

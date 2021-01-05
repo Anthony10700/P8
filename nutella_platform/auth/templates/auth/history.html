@@ -1,4 +1,4 @@
-{% extends "purbeurre/base.html" %} {% block content %} {% load static %}
+{% extends "base.html" %} {% block content %} {% load static %}
 
 <div class="result" id="for_result">
 
@@ -18,7 +18,7 @@
                     {% for article in articles_list %}
 
                     <div class="card col-lg-3 col-md-5 col-8 card_result">
-                        <a href="/show_product.html/?id={{article.id}}&search={{ aliment_search }}" style="height:50%;">
+                        <a href="{% url 'show_product' %}?id={{article.id}}&search={{ aliment_search }}" style="height:50%;">
                             <div class="img_nutri_result">
                                 <img src="{% static '/img/' %}{{article.nutriscore_grade}}.svg" alt="">
 
@@ -32,7 +32,7 @@
                             <h5 class="card-title">{{article.name}}</h5>
                             <!-- <p class="card-text">Nutriscore : {{article.nutriscore_grade.upper}}</p> -->
                             <p class="card-text">Categories: {{article.categories.name}}</p>
-                            <form action="/unsave.html" method="post" class="button_card_art">
+                            <form action="{% url 'unsave' %}" method="post" class="button_card_art">
                                 {% csrf_token %}
                                 <input type="hidden" name="search" value="{{ aliment_search }}">
 
@@ -50,6 +50,31 @@
                     {% endfor %}
 
                 </div>
+
+                {% if paginate %}
+                <div class="clearfix"></div>
+                <nav aria-label="">
+                    <ul class="pagination justify-content-center">
+                        {% if articles_list.has_previous %}
+                        <li style="padding-right: 20px;">
+                            <a href="?page={{ articles_list.previous_page_number }}">
+                                <button class="btn page-link">Précédent</button>
+                            </a>
+
+                        </li>
+
+                        {% endif %} {% if articles_list.has_next %}
+                        <li>
+                            <a href="?page={{ articles_list.next_page_number }}">
+                                <button class="btn page-link ">Suivant</button>
+                            </a>
+                        </li>
+
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+
 
 
             </div>

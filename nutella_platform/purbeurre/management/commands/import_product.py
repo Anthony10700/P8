@@ -11,6 +11,11 @@ from django.db.utils import IntegrityError
 
 
 class Command(BaseCommand):
+    """[summary]
+
+    Args:
+        BaseCommand ([type]): [description]
+    """
     help = 'import_porduct'
 
     def __init__(self, *args, **kwargs):
@@ -30,19 +35,13 @@ class Command(BaseCommand):
         table """
 
         list_of_categories = []
+        list_of_url_categories = []
+        files = open("purbeurre\\url_import_openfood.txt", 'r')
 
-        list_of_url_categories = [
-            "https://fr.openfoodfacts.org/categorie/boissons-a-la-canneberge.json",
-            "https://fr.openfoodfacts.org/categorie/boissons-a-l-orange.json",
-            "https://fr.openfoodfacts.org/categorie/jus-de-fruits.json",
-            "https://fr.openfoodfacts.org/categorie/nectars-de-fruits.json",
-            "https://fr.openfoodfacts.org/categorie/sodas-aux-fruits.json",
-            "https://fr.openfoodfacts.org/categorie/boissons-chaudes.json",
-            "https://fr.openfoodfacts.org/categorie/boissons-au-cafe.json",
-            "https://fr.openfoodfacts.org/categorie/tisanes-infusees.json",
-            "https://fr.openfoodfacts.org/categorie/boissons-au-the.json",
-            "https://fr.openfoodfacts.org/categorie/gateaux.json"
-        ]
+        lines = files.readlines()
+        for line in lines:
+            print(line)
+            list_of_url_categories.append(line)
 
         for url in list_of_url_categories:
             payload = {}
@@ -144,20 +143,34 @@ class Command(BaseCommand):
                         produit_value_ok = False
 
                 if produit_value_ok:
-                    try:
-                        product_bdd = Product.objects.create(name=product["product_name"],
-                                                             countries=product["countries"],
-                                                             id_openfoodfacts=product["id"],
-                                                             url=product["url"],
-                                                             image_url=product["image_url"],
-                                                             store=product["stores"],
-                                                             nutriscore_grade=nutri_value,
-                                                             categories=categories_fk)
-                        product_bdd.save()
+                    if "energy-kcal_100g" in product["nutriments"] and \
+                    "energy_100g" in product["nutriments"] and \
+                    "fat_100g" in product["nutriments"] and \
+                    "saturated-fat_100g" in product["nutriments"] and\
+                    "carbohydrates_100g" in product["nutriments"] and\
+                    "sugars_100g" in product["nutriments"] and\
+                    "proteins_100g" in product["nutriments"] and\
+                    "salt_100g" in product["nutriments"] and\
+                    "sodium_100g" in product["nutriments"] and\
+                    "nutrition-score-fr_100g" in product["nutriments"]:
 
-                    except IntegrityError:
-                        self.stdout.write(
-                            "########## la valeur d'une clé dupliquée rompt la contrainte unique ##########")
+                        tmp = json.dumps(product["nutriments"])
+                        try:
+                            product_bdd = Product.objects.create(name=product["product_name"],
+                                                                 countries=product["countries"],
+                                                                 id_openfoodfacts=product["id"],
+                                                                 url=product["url"],
+                                                                 image_url=product["image_url"],
+                                                                 store=product["stores"],
+                                                                 nutriscore_grade=nutri_value,
+                                                                 categories=categories_fk,
+                                                                 nutriments=tmp)
+
+                            product_bdd.save()
+
+                        except IntegrityError:
+                            self.stdout.write(
+                                "########## la valeur d'une clé dupliquée rompt la contrainte unique ##########")
 
         self.stdout.write("########## FIN ##########")
 
