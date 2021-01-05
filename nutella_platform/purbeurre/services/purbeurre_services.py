@@ -12,7 +12,7 @@ def save_product_result(user, request):
     """This methodes save a articles to a manytomany table with user
 
     Returns:
-        [type]: [description]
+        dictionary: "methode": "", "value": "" and "messages":""
     """
     result_dict = {"methode": "", "value": ""}
     try:
@@ -42,8 +42,9 @@ def get_articles(request, nb_of_articles_per_page):
         nb_of_articles_per_page (int): number of articles per page
 
     Returns:
-        render: render of resultats, contains all articles , in articles_list
-        paginate in context is for: True the button show in html page, False the button no visible
+        dictionary: "methode": "", "value": "" , "paginate":"", "seek":""
+                    OR
+                    "methode": "", "value": "" ,"messages":""
     """
     try:
         result_dict = {"methode": "", "value": ""}
@@ -78,7 +79,7 @@ def show_specify_product(request):
         request (request): request of views resultats
 
     Returns:
-        render: render of resultats, contains all articles , in articles_list
+        dictionary: "methode": "", "value": "" and "context":""
     """
     try:
         result_dict = {"methode": "", "value": ""}
@@ -135,10 +136,8 @@ def get_page(page, all_product, nb_of_articles_per_page):
     try:
         recherche = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
         recherche = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
         recherche = paginator.page(paginator.num_pages)
 
     if paginator.num_pages > 1:

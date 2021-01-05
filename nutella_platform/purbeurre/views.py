@@ -1,15 +1,16 @@
+"""
+    Views for purbeurre app, containt the views of resultats, show_product, unsave, legale and 404
+
+
+    Returns:
+        render: render of views
+        redirect : redirect of views
+    """
 from django.shortcuts import render
 from django.db import transaction
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib import messages
-from django.core.exceptions import ValidationError
-from .models import Product
-import json
 from django.template.defaulttags import register
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from purbeurre.services.purbeurre_services import save_product_result, get_articles, show_specify_product, get_page, remove_product, replace_indent
 
 
@@ -71,7 +72,8 @@ def resultats(request):
                 return redirect(result_dict["value"])
             elif result_dict["methode"] == "render":
                 context = {'title': "Resultats de votre recherche",
-                           'articles_list': result_dict["seek"], 'aliment_search': request.GET["search"],
+                           'articles_list': result_dict["seek"],
+                           'aliment_search': request.GET["search"],
                            "paginate": result_dict["paginate"]}
                 return render(request, result_dict["value"],  context=context)
 
@@ -179,4 +181,15 @@ def legale(request):
 
 
 def page_not_found_view(request, expetion):
-    return render(request, '404.html')
+    """Customizing error views 404
+
+    Args:
+        request ([type]): which is the URL that resulted in the error
+        expetion ([type]): which is a useful representation of the exception that
+        triggered the view (e.g. containing any message passed to a specific Http404 instance).
+
+    Returns:
+        [type]: [description]
+    """
+    context = {"expetion": expetion}
+    return render(request, '404.html', context=context)

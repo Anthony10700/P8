@@ -10,6 +10,14 @@ from auth.forms import CustomUserCreationForm
 
 
 def sign_validation(request):
+    """This methode test is form valide and return a dictionary
+
+    Args:
+       request (request): views request
+
+    Returns:
+        dictionary: "methode": "", "value": ""
+    """
     result_dict = {"methode": "", "value": ""}
     form = CustomUserCreationForm(request.POST)
     if form.is_valid():
@@ -36,7 +44,7 @@ def connect_validation(request):
         request (request): views request
 
     Returns:
-        [redirect]: [django.shortcuts] OR [render]: [django.shortcuts]        
+        dictionary: "methode": "", "value": "" ,"messages":""
     """
     result_dict = {"methode": "", "value": ""}
     if 'inputUsername' in request.POST and 'inputPassword' in request.POST:
@@ -71,7 +79,7 @@ def account_get_info(request):
         request (request): request of views auth account
 
     Returns:
-        [dict]: [context of render accound info]
+        dict: context of render accound info
     """
     if request.user.is_authenticated:
 
@@ -121,7 +129,7 @@ def get_page(page, all_product, nb_of_articles_per_page):
 
     Args:
         page (int): page of paginator
-        all_product (Product): product 
+        all_product (Product): product
         nb_of_articles_per_page (int): number of articles per page
 
     Returns:
@@ -133,10 +141,8 @@ def get_page(page, all_product, nb_of_articles_per_page):
     try:
         recherche = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
         recherche = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
         recherche = paginator.page(paginator.num_pages)
 
     if paginator.num_pages > 1:
