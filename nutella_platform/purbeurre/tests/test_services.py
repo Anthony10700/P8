@@ -2,131 +2,18 @@
         class of test Services purbeurre
     """
 import json
-from django.test import TestCase, RequestFactory, TransactionTestCase, Client
+from django.test import RequestFactory, TransactionTestCase, Client
 from purbeurre.services.purbeurre_services import save_product_result, get_articles, show_specify_product, remove_product, replace_indent, get_page
 from django.contrib.auth import get_user_model
 from purbeurre.models import Categories, Product
 # Create your tests here.
 from purbeurre.templatetags.utils import get_item
 
-
-class UrlPurbeurreTests(TestCase):
-    """
-    Class test of url of app
-
-    Args:
-        TestCase ([type]): [description]
-    """
-    def setUp(self):
-        """This method similar at __init__ for each instance
-        """
-        # Every test needs a client.
-        self.client = Client()
-
-    def test_sign_in(self):
-        """
-        This methode test the sign_in url
-        """
-        response = self.client.get('/auth/sign_in.html')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['title'], "Inscription")
-
-        self.make_account()
-
-        self.client.login(username='Test_accound', password='Test_psw')
-        response = self.client.get('/auth/sign_in.html')
-
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, "/auth/account.html")
-
-    def test_index(self):
-        """This methode test the index url
-        """
-        response = self.client.get('/purbeurre/index.html')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['title'], "Pur Beurre")
-
-    def test_accound(self):
-        """This methode test the account url
-        """
-        response = self.client.get('/auth/account.html')
-        self.assertEqual(response.status_code, 200)
-
-        self.make_account()
-        self.client.login(username='Test_accound', password='Test_psw')
-        response = self.client.get('/auth/account.html')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.context['account_info']["Email"], "Test-accound@monmail.com")
-
-    def test_history(self):
-        """This methode test the history url
-        """
-        response = self.client.get('/auth/history.html')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.context['title'], "Vous n'êtes pas connecté.")
-
-        self.make_account()
-        self.client.login(username='Test_accound', password='Test_psw')
-        response = self.client.get('/auth/history.html')
-        self.assertEqual(
-            response.context['title'], "Historique de vos articles")
-
-    def test_deconnection(self):
-        """This methode test the deconnection url
-        """
-        response = self.client.get('/auth/deconnection.html')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.context['title'], "Vous n'êtes pas connecté.")
-
-        self.make_account()
-        self.client.login(username='Test_accound', password='Test_psw')
-        response = self.client.get('/auth/deconnection.html')
-        self.assertEqual(response.context['title'], "Déconnexion")
-
-    def test_connect(self):
-        """This methode test the connection url
-        """
-        response = self.client.get('/auth/connection.html')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['title'], "Inscription")
-
-        self.make_account()
-
-        info = {"inputUsername": "Test_accound", "inputPassword": "Test_psw"}
-        response = self.client.post('/auth/connection.html', data=info)
-
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, "/auth/account.html")
-
-        info = {"inputUsername": "Test_accound", "inputPassword": "Tsdqsdqs"}
-        response = self.client.post('/auth/connection.html', data=info)
-
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, "/auth/sign_in.html")
-
-    def make_account(self):
-        """This methode make a account for testing the url form sign_in
-        """
-        info = {"inputUsername": "Test_accound", "inputemail": "Test-accound@monmail.com", 
-        "inputPassword1": "Test_psw", "inputPassword2": "Test_psw", "inputNom": "Test_Nom",
-         "inputprenom": "Test_prenom"}
-        response = self.client.post('/auth/sign_in.html', data=info)
-        self.assertEqual(response.status_code, 302)
-
-        response = self.client.get('/auth/account.html')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.context['account_info']["Email"], info["inputemail"])
-
-
 class TestMyServicesPurbeurre(TransactionTestCase):
-    """This class is for the services worker of app purbeurre
+    """This class is for the service worker of app purbeurre
 
     Args:
-        TransactionTestCase ([type]): TransactionTestCase because Every test needs setUp methode.
+        TransactionTestCase ([type]): TransactionTestCase because Every test needs setUp method.
     """
     reset_sequences = True
 
@@ -140,10 +27,10 @@ class TestMyServicesPurbeurre(TransactionTestCase):
         self.create_product()
 
     def make_account(self):
-        """This methode make a account for testing the url form sign_in
+        """This method make a account for testing the url form sign_in
         """
         info = {"inputUsername": "Test_accound2", "inputemail": "Test-accound@monmail.com2",
-         "inputPassword1": "Test_psw2", "inputPassword2": "Test_psw2", "inputNom": "Test_Nom", 
+         "inputPassword1": "Test_psw2", "inputPassword2": "Test_psw2", "inputNom": "Test_Nom",
          "inputprenom": "Test_prenom"}
         response = self.client.post('/auth/sign_in.html', data=info)
         self.assertEqual(response.status_code, 302)
@@ -154,7 +41,7 @@ class TestMyServicesPurbeurre(TransactionTestCase):
             response.context['account_info']["Email"], info["inputemail"])
 
     def create_product(self):
-        """This methode create a product for testing
+        """This method create a product for testing
         """
         categories = Categories.objects.create(name="boissons-a-la-canneberge",
                                                url="https://fr.openfoodfacts.org/categorie/boissons-a-la-canneberge.json",
@@ -177,7 +64,7 @@ class TestMyServicesPurbeurre(TransactionTestCase):
         product_bdd.save()
 
     def test_save_product_result(self):
-        """This methode test save_product_result
+        """This method test save_product_result
         """
         user = get_user_model()
         info = {"id": "1", "search": "boissons"}
@@ -191,7 +78,7 @@ class TestMyServicesPurbeurre(TransactionTestCase):
         self.assertEqual(result, result_dict)
 
     def test_get_articles(self):
-        """This methode test get_article
+        """This method test get_article
         """
         user = get_user_model()
         info = {"search": "boissons"}
@@ -205,7 +92,7 @@ class TestMyServicesPurbeurre(TransactionTestCase):
             self.assertEqual(False, True)
 
     def test_show_specify_product(self):
-        """This methode test show_specify_product
+        """This method test show_specify_product
         """
         user = get_user_model()
         info = {"id": "1"}
@@ -222,7 +109,7 @@ class TestMyServicesPurbeurre(TransactionTestCase):
         self.assertEqual(result, result_dict)
 
     def test_remove_product(self):
-        """This methode test remove_product
+        """This method test remove_product
         """
         user = get_user_model()
         self.test_save_product_result()
@@ -237,13 +124,13 @@ class TestMyServicesPurbeurre(TransactionTestCase):
         self.assertEqual(len(product_show), 0)
 
     def test_get_item(self):
-        """This methode test get_item
+        """This method test get_item
         """
         dict_in = {"id": "test"}
         self.assertEqual(get_item(dict_in, "id"), "test")
 
     def test_replace_indent(self):
-        """This methode test replace_indent
+        """This method test replace_short dash
         """
         product_show = Product.objects.get(id="1")
 
@@ -253,9 +140,10 @@ class TestMyServicesPurbeurre(TransactionTestCase):
                          "boissons a la canneberge")
 
     def test_get_page(self):
-        """This methode test get_page
+        """This method test get_page
         """
-        product_show = Product.objects.get(id="1")
+        product_show = Product.objects.filter(
+            id="1")
         recherche, paginate = get_page(1, product_show, 6)
 
         self.assertEqual(recherche[0].name, "Cranberry")

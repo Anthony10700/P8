@@ -3,10 +3,12 @@
     """
 import json
 from django.test import RequestFactory, TransactionTestCase, Client
-from auth.services.auth_services import sign_validation, account_get_info, connect_validation, get_history_article, replace_indent, get_page
+from auth.services.auth_services import sign_validation, account_get_info, connect_validation, get_history_article, replace_short_dash, get_page
 from django.contrib.auth import logout, get_user_model
 from purbeurre.models import Categories, Product
-
+from auth import admin
+from auth import apps
+from auth import models
 
 # Create your tests here.
 
@@ -16,7 +18,7 @@ class TestMyServicesAuth(TransactionTestCase):
 
     Args:
         TransactionTestCase ([type]): TransactionTestCase and not
-        TestCase because Every test needs "setUp methode"
+        TestCase because Every test needs "setUp method"
     """
     reset_sequences = True
 
@@ -29,7 +31,7 @@ class TestMyServicesAuth(TransactionTestCase):
         self.create_product()
 
     def make_account(self):
-        """[summary]
+        """this method can create an account for the test
         """
         info = {"inputUsername": "Test_accound2", "inputemail": "Test-accound@monmail.com2",
                 "inputPassword1": "Test_psw2",
@@ -44,7 +46,7 @@ class TestMyServicesAuth(TransactionTestCase):
             response.context['account_info']["Email"], info["inputemail"])
 
     def test_sign_validation(self):
-        """[summary]
+        """this method test the inscription
         """
         info = {"inputUsername": "Test_accound", "inputemail":
                 "Test-accound@monmail.com", "inputPassword1": "Test_psw",
@@ -57,7 +59,7 @@ class TestMyServicesAuth(TransactionTestCase):
         self.assertEqual(result, result_dict)
 
     def test_account_get_info(self):
-        """[summary]
+        """this method test the account information
         """
         user = get_user_model()
         request = self.factory.get('/auth/account.html')
@@ -77,7 +79,7 @@ class TestMyServicesAuth(TransactionTestCase):
         self.assertEqual(account_get, request_response_dict)
 
     def test_connect_validation(self):
-        """[summary]
+        """this method test the account connection
         """
         self.make_account()
         info = {"inputUsername": "Test_accound2", "inputPassword": "Test_psw2"}
@@ -89,7 +91,7 @@ class TestMyServicesAuth(TransactionTestCase):
         self.assertEqual(result_dict, resulta)
 
     def test_get_history_article(self):
-        """[summary]
+        """this method can get the history article
         """
         user = get_user_model()
         self.make_account()
@@ -104,17 +106,17 @@ class TestMyServicesAuth(TransactionTestCase):
             self.assertEqual(False, True)
 
     def test_replace_indent(self):
-        """[summary]
+        """this method test if all the short dash has been removed from the string 
         """
         product_show = Product.objects.get(id="1")
 
-        product_show = replace_indent(product_show)
+        product_show = replace_short_dash(product_show)
 
         self.assertEqual(product_show.categories.name,
                          "boissons a la canneberge")
 
     def create_product(self):
-        """[summary]
+        """this method create a object product
         """
         categories = Categories.objects.create(name="boissons-a-la-canneberge",
                                                url="https://fr.openfoodfacts.org/categorie/boissons-a-la-canneberge.json",
@@ -137,9 +139,10 @@ class TestMyServicesAuth(TransactionTestCase):
         product_bdd.save()
 
     def test_get_page(self):
-        """[summary]
+        """this method can get back a chosen page of the paginator
         """
-        product_show = Product.objects.get(id="1")
+        product_show = Product.objects.filter(
+            id="1")
         recherche, paginate = get_page(1, product_show, 6)
 
         self.assertEqual(recherche[0].name, "Cranberry")

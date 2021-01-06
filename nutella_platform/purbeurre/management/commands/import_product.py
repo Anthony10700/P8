@@ -1,4 +1,4 @@
-"""The script for import api open food facts data with data base """
+"""The script is for the import of the  api from open food facts data in the  data base """
 # !/usr/bin/python3
 # -*- coding: Utf-8 -*
 import json
@@ -11,7 +11,7 @@ from django.db.utils import IntegrityError
 
 
 class Command(BaseCommand):
-    """[summary]
+    """this class create a new command to call from the file manage.py
 
     Args:
         BaseCommand ([type]): [description]
@@ -31,7 +31,7 @@ class Command(BaseCommand):
         self.main()
 
     def main(self):
-        """This function import api open food facts data and make new DATA BASE myslq and
+        """This method import the api  of open food facts data and make new DATA BASE myslq and
         table """
 
         list_of_categories = []
@@ -55,7 +55,7 @@ class Command(BaseCommand):
             list_of_categories.append(test)
 
         for product_ in list_of_url_categories:
-            #  import all product for all categories in the limit nb_of_page
+            #  import all products for all categories in the limit nb_of_page
             list_temp = []
             for i in range(1, self.nb_of_page + 1):
                 print(product_.replace(".json", "") + "/" + str(i) + ".json")
@@ -84,13 +84,13 @@ class Command(BaseCommand):
 
         for categ in Categories.objects.all():
 
-            print(str(categ.name) + " : supprimé")
+            print(str(categ.name) + " : delete")
             categ.delete()
 
         print("#################################")
         print("#################################")
         print("#################################")
-        print("#### Création des categories ####")
+        print("#### Création des catégories ####")
         print("#################################")
         print("#################################")
         print("#################################")
@@ -105,7 +105,7 @@ class Command(BaseCommand):
                                                    url=url,
                                                    nb_of_products=int(nb_prod))
 
-            print(categories.name + " : crée")
+            print(categories.name + " : create")
 
             categories.save()
 
@@ -121,7 +121,7 @@ class Command(BaseCommand):
                        "stores", "categories"]
 
         for categ in data_all:
-            #  insert all product in database with the fk_key FOREIGN KEY (`categories_idcategories`)"
+            #  insert all products in database with the fk_key FOREIGN KEY (`categories_idcategories`)"
             #  REFERENCES `openfoodfacts`.`categories` (`idcategories`)"
 
             print(categ)

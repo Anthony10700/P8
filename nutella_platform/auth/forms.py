@@ -1,12 +1,12 @@
-""" Class for custom user creation formulaire
+""" Class for custom user creation form
 
     Raises:
-        ValidationError: "Email already exists"
-        ValidationError: "Username already exists"
-        ValidationError: "Password don't match"
+        ValidationError: "Email already exist"
+        ValidationError: "Username already exist"
+        ValidationError: "Password doesn't match"
 
     Returns:
-        form: formulaire
+        form: form
     """
 from django.contrib.auth import get_user_model
 from django import forms
@@ -15,18 +15,18 @@ from django.contrib.auth.hashers import make_password
 
 
 class CustomUserCreationForm(forms.Form):
-    """[summary]
+    """class dor custom user creation form
 
     Args:
         forms Form: super class Form
 
     Raises:
-        ValidationError: "Email already exists"
-        ValidationError: "Username already exists"
-        ValidationError: "Password don't match"
+        ValidationError: "Email already exist"
+        ValidationError: "Username already exist"
+        ValidationError: "Password doesn't match"
 
     Returns:
-        form: formulaire
+        form: form
     """
     inputUsername = forms.CharField(widget=forms.TextInput(
         attrs={'id': 'inputUsername'}), min_length=2, max_length=150, required=True)
@@ -43,24 +43,24 @@ class CustomUserCreationForm(forms.Form):
 
     def clean_email(self):
         """
-        This methode clean email in lower case and test if exists
+        This method clean email in lower case and test if it exist
 
         Raises:
-            ValidationError: "Email already exists"
+            ValidationError: "Email already exist"
 
         Returns:
-            str: email of formulaire in lower case
+            str: email of form in lower case
         """
         user = get_user_model()
         email = self.cleaned_data['inputemail'].lower()
         email_select = user.objects.filter(email=email)
         if email_select.count():
-            raise ValidationError("Email already exists")
+            raise ValidationError("Email already exist")
         return email
 
-    def clean_speudo(self):
+    def clean_pseudo(self):
         """
-        This methode clean speudo in lower case and test if exists
+        This method clean pseudo in lower case and test if it exist
         Raises:
             ValidationError: [description]
 
@@ -71,15 +71,15 @@ class CustomUserCreationForm(forms.Form):
         username = self.cleaned_data['inputUsername'].lower()
         username_select = user.objects.filter(username=username)
         if username_select.count():
-            raise ValidationError("Username already exists")
+            raise ValidationError("Username already exist")
         return username
 
     def clean_password2(self):
         """
-        This methode clean a password and hash in pbkdf2_sha256
+        This method clean a password and hash in pbkdf2_sha256
 
         Raises:
-            ValidationError: "Password don't match"
+            ValidationError: "Password doesn't match"
 
         Returns:
             str: password2 hash pbkdf2_sha256

@@ -1,4 +1,4 @@
-"""[summary]
+"""this file contain the job code method of  all views
 
     Returns:
         [type]: [description]
@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def save_product_result(user, request):
-    """This methodes save a articles to a manytomany table with user
+    """This method save an article to a manytomany table with user
 
     Returns:
         dictionary: "methode": "", "value": "" and "messages":""
@@ -35,10 +35,10 @@ def save_product_result(user, request):
 
 def get_articles(request, nb_of_articles_per_page):
     """
-    This mothodes get articles in bdd
+    This method get articles in bdd
 
     Args:
-        request (request): request of views resultats
+        request (request): request of views results
         nb_of_articles_per_page (int): number of articles per page
 
     Returns:
@@ -52,10 +52,13 @@ def get_articles(request, nb_of_articles_per_page):
             name__icontains=request.GET["search"])
 
         if 'page' in request.GET:
-            page = request.GET['page']
+            page = int(request.GET['page'])
+            if not page > 0:
+                page = 1
         else:
             page = 1
-
+        
+        
         seek, paginate = get_page(page, recherche, nb_of_articles_per_page)
 
         result_dict["methode"] = "render"
@@ -72,11 +75,11 @@ def get_articles(request, nb_of_articles_per_page):
 
 
 def show_specify_product(request):
-    """This methodes show a product , get id in request get id and send in context
+    """This method show a product , get id in request get id and send in context
     the product in articles_list
 
     Args:
-        request (request): request of views resultats
+        request (request): request of views results
 
     Returns:
         dictionary: "methode": "", "value": "" and "context":""
@@ -109,7 +112,7 @@ def show_specify_product(request):
 
 
 def remove_product(request):
-    """This methodes remove product with specify id
+    """This method remove product with specify id
 
     Args:
         request (request): need "id" in request.POST
@@ -120,7 +123,7 @@ def remove_product(request):
 
 
 def get_page(page, all_product, nb_of_articles_per_page):
-    """This methodes make paginator of all product
+    """This method make a paginator of all products
 
     Args:
         page (int): page of paginator
@@ -131,7 +134,8 @@ def get_page(page, all_product, nb_of_articles_per_page):
         tuple: nb_of_articles_per_page product and paginate.
         paginate in context is for: True the button show in html page, False the button no visible
     """
-    paginator = Paginator([all_product], nb_of_articles_per_page)
+    
+    paginator = Paginator(all_product, nb_of_articles_per_page)
 
     try:
         recherche = paginator.page(page)
@@ -149,7 +153,7 @@ def get_page(page, all_product, nb_of_articles_per_page):
 
 
 def replace_indent(all_product_result):
-    """This methode replace all indent in you string
+    """This method replace all short dash in the string
 
     Args:
         all_product_result (product list):  list of product

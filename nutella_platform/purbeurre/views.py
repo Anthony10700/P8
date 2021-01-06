@@ -1,5 +1,5 @@
 """
-    Views for purbeurre app, containt the views of resultats, show_product, unsave, legale and 404
+    Views for purbeurre app, contain the views of results, show_product, unsave, legale and 404
 
 
     Returns:
@@ -16,22 +16,22 @@ from purbeurre.services.purbeurre_services import save_product_result, get_artic
 
 @register.filter
 def get_item(dictionary, key):
-    """This methode is a filtre to your gabari
+    """This method is a filter to your template
 
     Args:
         dictionary (dict): dictionary
         key (string): key of your dictionary
 
     Returns:
-        string: value of you dictionary key
+        string: value of your dictionary key
     """
     return dictionary.get(key)
 
-# TODO: Voir la responsivité sur la hauteur du footer, et avec les form
+# TODO: Voir la reactivite( responsive)  sur la hauteur du footer, et avec les formulaires
 
 
 def index(request):
-    """[summary]
+    """this view concern the index of the main page 
 
     Args:
         request ([type]): [description]
@@ -45,7 +45,7 @@ def index(request):
 
 @transaction.atomic
 def resultats(request):
-    """[summary]
+    """this view concern the result of the research
 
     Args:
         request ([type]): [description]
@@ -84,7 +84,7 @@ def resultats(request):
 
 
 def show_product(request):
-    """[summary]
+    """this view concern the display of a product
 
     Args:
         request ([type]): [description]
@@ -92,27 +92,33 @@ def show_product(request):
     Returns:
         [type]: [description]
     """
-    if request.user.is_authenticated:
-        if request.method == 'GET':
-            result_dict = show_specify_product(request)
-            if result_dict["methode"] == "render" and "context" in result_dict:
-                return render(request, result_dict["value"],  context=result_dict["context"])
-            elif result_dict["methode"] == "render" and "message" in result_dict:
-                messages.error(request, result_dict["message"])
-                context = {'title': "Product"}
-                return render(request, 'purbeurre/resultats.html',  context=context)
+    try:
+        if request.user.is_authenticated:
+            if request.method == 'GET':
+                result_dict = show_specify_product(request)
+
+                if result_dict["methode"] == "render" and "context" in result_dict:
+                    return render(request, result_dict["value"],  context=result_dict["context"])
+                elif result_dict["methode"] == "redirect" and "message" in result_dict:
+                    messages.error(request, result_dict["message"])
+                    context = {'title': "Product"}
+                    return render(request, 'purbeurre/resultats.html',  context=context)
+            else:
+                context = {'title': "Bienvenue"}
+                return render(request, 'purbeurre/index.html',  context=context)
+
         else:
-            context = {'title': "Bienvenue"}
-            return render(request, 'purbeurre/index.html',  context=context)
-    else:
-        context = {'title': "Vous n'êtes pas connecté.",
-                   'err_show': "Vous n'êtes pas connecté."}
-        return render(request, 'auth/sign_in.html',  context=context)
+            context = {'title': "Vous n'êtes pas connecté.",
+                       'err_show': "Vous n'êtes pas connecté."}
+            return render(request, 'auth/sign_in.html',  context=context)
+    except ValueError:
+        context = {'title': "Bienvenue"}
+        return render(request, 'purbeurre/index.html',  context=context)
 
 
 @transaction.atomic
 def unsave(request):
-    """[summary]
+    """this view can cancel an article previously saved
 
     Args:
         request ([type]): [description]
@@ -168,7 +174,7 @@ def unsave(request):
 
 
 def legale(request):
-    """[summary]
+    """this view concern the display of the legal mention
 
     Args:
         request ([type]): [description]
@@ -180,16 +186,16 @@ def legale(request):
     return render(request, 'purbeurre/legal_notice.html',  context=context)
 
 
-def page_not_found_view(request, expetion):
+def page_not_found_view(request, exception=None):
     """Customizing error views 404
 
     Args:
         request ([type]): which is the URL that resulted in the error
-        expetion ([type]): which is a useful representation of the exception that
+        exception ([type]): which is a useful representation of the exception that
         triggered the view (e.g. containing any message passed to a specific Http404 instance).
 
     Returns:
         [type]: [description]
     """
-    context = {"expetion": expetion}
-    return render(request, '404.html', context=context)
+
+    return render(request, '404.html')

@@ -1,4 +1,4 @@
-"""[summary]
+"""this file is for including the job code
 
     Returns:
         [type]: [description]
@@ -8,9 +8,8 @@ from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from auth.forms import CustomUserCreationForm
 
-
 def sign_validation(request):
-    """This methode test is form valide and return a dictionary
+    """This method test if a form is valide return to a dictionary
 
     Args:
        request (request): views request
@@ -23,7 +22,7 @@ def sign_validation(request):
     if form.is_valid():
         form.clean_password2()
         form.clean_email()
-        form.clean_speudo()
+        form.clean_pseudo()
         user = form.save()
         login(request, user)
         result_dict["methode"] = "redirect"
@@ -64,7 +63,7 @@ def connect_validation(request):
         else:
             result_dict["methode"] = "redirect"
             result_dict["value"] = "sign_in"
-            result_dict["messages"] = "Mots de passe ou Speudo incorrect"
+            result_dict["messages"] = "Mot de passe ou pseudo incorrect"
             return result_dict
     else:
         result_dict["methode"] = "render"
@@ -73,7 +72,7 @@ def connect_validation(request):
 
 
 def account_get_info(request):
-    """This methodes create a context of info user if connected
+    """This method create a context of user information  if he is connected
 
     Args:
         request (request): request of views auth account
@@ -95,7 +94,7 @@ def account_get_info(request):
 
 def get_history_article(request, nb_of_articles_per_page):
     """
-    this methodes is for get all article saved
+    this method is for getting  all  the article saved by the user
 
     Args:
         request (request): request of views auth history
@@ -113,7 +112,7 @@ def get_history_article(request, nb_of_articles_per_page):
     else:
         page = 1
 
-    recherche = replace_indent(recherche)
+    recherche = replace_short_dash(recherche)
 
     seek, paginate = get_page(page, recherche, nb_of_articles_per_page)
 
@@ -125,7 +124,7 @@ def get_history_article(request, nb_of_articles_per_page):
 
 
 def get_page(page, all_product, nb_of_articles_per_page):
-    """This methodes make paginator of all product
+    """This method make a paginator for all products
 
     Args:
         page (int): page of paginator
@@ -136,7 +135,7 @@ def get_page(page, all_product, nb_of_articles_per_page):
         tuple: nb_of_articles_per_page product and paginate.
         paginate in context is for: True the button show in html page, False the button no visible
     """
-    paginator = Paginator([all_product], nb_of_articles_per_page)
+    paginator = Paginator(all_product, nb_of_articles_per_page)
 
     try:
         recherche = paginator.page(page)
@@ -153,14 +152,14 @@ def get_page(page, all_product, nb_of_articles_per_page):
     return recherche, paginate
 
 
-def replace_indent(all_product_result):
-    """This methode replace all indent in you string
+def replace_short_dash(all_product_result):
+    """This method replace all short dash(-) by nothing  in the string
 
     Args:
-        all_product_result (product list):  list of product
+        all_product_result (product list):  list of products
 
     Returns:
-        [product list]: list of product
+        [product list]: list of products
     """
     try:
         for arct in all_product_result:

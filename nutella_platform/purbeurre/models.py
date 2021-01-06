@@ -1,15 +1,32 @@
+"""
+this file contains  all models class
+"""
 from django.db import models
 from django.conf import settings
 # Create your models here.
 
 
 class Categories(models.Model):
+    """Model categories of articles
+
+    Args:
+        models ([type]): [description]
+    """
+    class Meta:
+        ordering = ['-id']
     name = models.CharField(max_length=200, unique=True, null=False)
     url = models.URLField(max_length=200, unique=True, null=False)
     nb_of_products = models.IntegerField(null=True)
 
 
 class Product(models.Model):
+    """Model of Product
+
+    Args:
+        models ([type]): [description]
+    """
+    class Meta:
+        ordering = ['-id']
     name = models.CharField(max_length=800, unique=False, null=False)
     countries = models.CharField(max_length=800, unique=False, null=True)
     id_openfoodfacts = models.CharField(
@@ -22,8 +39,3 @@ class Product(models.Model):
     nutriments = models.CharField(max_length=8000, unique=False, null=False)
     user_id = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="save_product", name="save_product")
-
-
-# class Products_save(models.Model):
-
-#     product_id = models.ManyToManyField(Product)

@@ -1,4 +1,4 @@
-"""[summary]
+"""this file contain all the view of the authentification application
 
     Returns:
         [type]: [description]
@@ -14,7 +14,7 @@ from auth.services.auth_services import connect_validation, account_get_info, ge
 
 
 def sign_in(request):
-    """[summary]
+    """this view concern the inscription
 
     Args:
         request ([type]): [description]
@@ -44,7 +44,7 @@ def sign_in(request):
 
 
 def connect(request):
-    """[summary]
+    """this view concern the account connection
 
     Args:
         request ([type]): [description]
@@ -69,7 +69,7 @@ def connect(request):
 
 
 def account(request):
-    """[summary]
+    """this view concern the account 
 
     Args:
         request ([type]): [description]
@@ -86,7 +86,7 @@ def account(request):
 
 
 def logout_view(request):
-    """[summary]
+    """this view is for the deconnexion
 
     Args:
         request ([type]): [description]
@@ -105,7 +105,7 @@ def logout_view(request):
 
 
 def history(request):
-    """[summary]
+    """this view serve to get back the history of the saved products
 
     Args:
         request ([type]): [description]
