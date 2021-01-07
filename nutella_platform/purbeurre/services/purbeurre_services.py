@@ -53,12 +53,10 @@ def get_articles(request, nb_of_articles_per_page):
 
         if 'page' in request.GET:
             page = int(request.GET['page'])
-            if not page > 0:
+            if page <= 0:
                 page = 1
         else:
             page = 1
-        
-        
         seek, paginate = get_page(page, recherche, nb_of_articles_per_page)
 
         result_dict["methode"] = "render"
