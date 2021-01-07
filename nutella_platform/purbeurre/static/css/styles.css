@@ -62,7 +62,6 @@ article,
 aside,
 figcaption,
 figure,
-footer,
 header,
 hgroup,
 main,
@@ -10372,7 +10371,7 @@ header.masthead h1 {
     color: #E8A75D;
 }
 
-header.sign_back {
+.sign_back {
     padding-top: 10rem;
     background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../../static/img/bg-masthead.jpg");
     background-position: center;
@@ -10380,7 +10379,6 @@ header.sign_back {
     background-attachment: scroll;
     background-size: cover;
     color: #E8A75D;
-    height: 92%;
     min-height: 92%;
 }
 
@@ -10415,23 +10413,11 @@ header.sign_back {
 .card-body.card-body-article {
     height: 50%;
     color: #86EBE6;
+    text-align: center;
 }
 
 .card-body.card-body-article a {
     color: #E8A75D;
-}
-
-#for_result {
-    display: block;
-    background-color: red;
-    padding-top: 4%;
-    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../../static/img/bg-masthead.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: cover;
-    color: #E8A75D;
-    min-height: 96%;
 }
 
 .info_acc {
@@ -10471,4 +10457,15 @@ header.sign_back {
     background-color: rgba(66, 66, 66, 0.356);
     padding-left: 0px;
     padding-right: 0px;
+}
+
+footer {
+    display: block;
+    width: 100%;
+}
+
+.card-img-top {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

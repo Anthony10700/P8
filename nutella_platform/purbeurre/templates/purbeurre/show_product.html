@@ -1,12 +1,12 @@
 {% extends "base.html" %} {% block content %} {% load static %} {% load utils %}
 
-<div class="result" id="for_result">
+<div class="row sign_back pb-5">
 
 
 
-    <div class="container col-8">
+    <div class="container col-10">
 
-        <div class="row justify-content-center ">
+        <div class="row justify-content-center col-12">
             <div class="col-12 text-center ">
                 {% if messages %}
                 <div class="alert alert-secondary col-12" role="alert" style="margin-top: 50px;">
@@ -37,21 +37,24 @@
                     </div>
 
                 </div>
+                {% endif %}
+
+
+                <hr class="divider_sign" />
+                <h4>Votre aliment : </h4>
 
             </div>
 
 
 
-            {% endif %}
-
-            <hr class="divider_sign" />
-
-            <h4>Votre aliment : </h4>
-
-            <div class="row justify-content-center mt-5">
 
 
-                <div class="card col-lg-4 col-md-8 col-12 card_result">
+
+
+            <div class="row justify-content-center mt-5 col-12">
+
+
+                <div class="card col-lg-3 col-md-10 col-12 card_result">
                     <a href="{% url 'show_product' %}?id={{articles_list.id}}" style="height:50%;">
                         <div class="img_nutri_result">
                             <img src="{% static '/img/' %}{{articles_list.nutriscore_grade}}.svg" alt="">
@@ -78,7 +81,7 @@
                 </div>
 
 
-                <div class="card col-lg-7 col-md-8 col-12 card_description">
+                <div class="card col-lg-8 col-md-10 col-12 card_description">
                     <div class="card-body card-body-article">
                         <h4 class="card-title">Informations concernant : {{articles_list.name}}</h4>
 

@@ -1,10 +1,10 @@
 {% extends "base.html" %} {% block content %} {% load static %}
 
-<div class="result" id="for_result">
+<div class="row sign_back pb-5">
 
     <div class="container col-8">
 
-        <div class="row justify-content-center ">
+        <div class="row justify-content-center col-12">
             <div class="col-12 text-center">
 
                 <h1 class="mt-2">Votre aliment cherché est : {{ aliment_search }}</h1>
@@ -24,30 +24,29 @@
                                 <ul>
                                     <li>{{ message }}</li>
                                 </ul>
+
+                                {% endif %} {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+
+                                <h4>SUCCESS : </h4>
+                                <ul>
+                                    <li>{{ message }}</li>
+                                </ul>
+                                {% endif %} {% endfor %}
                             </div>
-                            {% endif %} {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-
-                            <h4>SUCCESS : </h4>
-                            <ul>
-                                <li>{{ message }}</li>
-                            </ul>
-                            {% endif %} {% endfor %}
-
                         </div>
 
                     </div>
                 </div>
 
 
+                {% endif %}
             </div>
 
 
-            {% endif %}
-
-            <div class="row justify-content-center mt-5" id="div_card_all">
+            <div class="row justify-content-center mt-5 col-12" id="div_card_all">
                 {% for article in articles_list %}
 
-                <div class="card col-lg-3 col-md-5 col-8 card_result">
+                <div class="card col-lg-4 col-12 card_result">
                     <a href="{% url 'show_product' %}?id={{article.id}}&search={{ aliment_search }}" style="height:50%;">
                         <div class="img_nutri_result">
                             <img src="{% static '/img/' %}{{article.nutriscore_grade}}.svg" alt="">
@@ -60,7 +59,6 @@
                     </a>
                     <div class="card-body card-body-article ">
                         <h5 class="card-title">{{article.name}}</h5>
-                        <!-- <p class="card-text">Nutriscore : {{article.nutriscore_grade.upper}}</p> -->
                         <p class="card-text">Categories: {{article.categories.name}}</p>
                         <form action="{% url 'resultat' %}" method="post" class="button_card_art">
                             {% csrf_token %}
@@ -80,6 +78,7 @@
                 {% endfor %}
 
             </div>
+
             {% if paginate %}
             <div class="clearfix"></div>
             <nav aria-label="">
