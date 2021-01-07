@@ -1215,3 +1215,82 @@ JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jqu
 
 ###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
+1609970486723	geckodriver	INFO	Listening on 127.0.0.1:53806
+1609970489737	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofileMS6Qdx"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1609970492137	Marionette	INFO	Listening on port 53815
+1609970492376	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1609970498538	Marionette	INFO	Stopped listening on port 53815
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1609970499197	geckodriver	INFO	Listening on 127.0.0.1:53902
+1609970502210	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofileiZxGVN"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1609970504306	Marionette	INFO	Listening on port 53910
+1609970504358	Marionette	WARN	TLS certificate errors will be ignored for this session
+1609970506395	Marionette	INFO	Stopped listening on port 53910
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1609970506989	geckodriver	INFO	Listening on 127.0.0.1:53941
+1609970510020	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofilevrFOSm"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1609970512025	Marionette	INFO	Listening on port 53949
+1609970512058	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1609970514783	Marionette	INFO	Stopped listening on port 53949
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1609970515304	geckodriver	INFO	Listening on 127.0.0.1:54003
+1609970518317	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofileWZeGik"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1609970520297	Marionette	INFO	Listening on port 54011
+1609970520360	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1609970527967	Marionette	INFO	Stopped listening on port 54011
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1609970528547	geckodriver	INFO	Listening on 127.0.0.1:54090
+1609970531568	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofileXydShF"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1609970533573	Marionette	INFO	Listening on port 54098
+1609970533608	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1609970538367	Marionette	INFO	Stopped listening on port 54098
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1609970539005	geckodriver	INFO	Listening on 127.0.0.1:54159
+1609970542017	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofilewNVkAW"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+Can't find symbol 'eglSetDamageRegionKHR'.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1609970544027	Marionette	INFO	Listening on port 54167
+1609970544058	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1609970550227	Marionette	INFO	Stopped listening on port 54167
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
