@@ -130,13 +130,12 @@ if os.environ.get('ENV') == 'PRODUCTION':
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
     STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'purbeurre/static/'),
-        os.path.join(BASE_DIR, 'auth/static/'),
+        os.path.join(PROJECT_ROOT, 'static'),        
     )
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    DATABASES = {'default':{}}
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+    # DATABASES = {'default':{}}
+    # db_from_env = dj_database_url.config(conn_max_age=500)
+    # DATABASES['default'].update(db_from_env)
 else:
     DATABASES = {
     'default': {
