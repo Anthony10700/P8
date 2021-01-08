@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'nutella_platform.urls'
@@ -123,17 +124,24 @@ STATIC_URL = '/static/'
 
 INTERNAL_IP = ['127.0.0.1']
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'purbeurre/static/'),
-    os.path.join(BASE_DIR, 'auth/static/'),
-]
+
 
 if os.environ.get('ENV') == 'PRODUCTION':
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
+    # Extra places for collectstatic to find static files.
+    STATICFILES_DIRS = (
+        os.path.join(PROJECT_ROOT, 'static'),
+    )
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     DATABASES = {'default':{}}
     # Static files settings
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    
     db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)    
+    DATABASES['default'].update(db_from_env)
+    
 else:
     DATABASES = {
     'default': {
@@ -144,4 +152,9 @@ else:
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
-}
+    }
+    STATICFILES_DIRS = []
+    STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'purbeurre/static/'),
+    os.path.join(BASE_DIR, 'auth/static/'),
+    ]
