@@ -14,6 +14,11 @@ class Categories(models.Model):
     """
     class Meta:
         ordering = ['-id']
+        verbose_name = "Category"
+        verbose_name_plural  = "Categories"
+
+    def __str__(self):
+        return self.name
     name = models.CharField(max_length=200, unique=True, null=False)
     url = models.URLField(max_length=200, unique=True, null=False)
     nb_of_products = models.IntegerField(null=True)
@@ -25,8 +30,16 @@ class Product(models.Model):
     Args:
         models ([type]): [description]
     """
+
+
     class Meta:
         ordering = ['-id']
+        verbose_name = "Product"
+        verbose_name_plural  = "Products"
+
+    def __str__(self):
+        return self.name
+        
     name = models.CharField(max_length=800, unique=False, null=False)
     countries = models.CharField(max_length=800, unique=False, null=True)
     id_openfoodfacts = models.CharField(

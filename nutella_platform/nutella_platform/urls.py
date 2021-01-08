@@ -24,12 +24,12 @@ urlpatterns = [
     path('', views.index),
     path('purbeurre/', include('purbeurre.urls')),
     path('auth/', include('auth.urls')),
-    path('admin/', admin.site.urls),
-
+    path('pathofadmin/', admin.site.urls),
 
 ]
 
 handler404 = 'purbeurre.views.page_not_found_view'
+handler500 = 'purbeurre.views.page_server_error'
 
 if settings.DEBUG:
     import debug_toolbar
