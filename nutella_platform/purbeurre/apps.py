@@ -1,5 +1,8 @@
 from django.apps import AppConfig
-
+import os
 
 class PurbeurreConfig(AppConfig):
-    name = 'purbeurre'
+    if os.environ.get('ENV') == 'PRODUCTION':
+        name = 'nutella_platform.purbeurre'
+    else:
+        name = 'purbeurre'
