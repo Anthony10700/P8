@@ -16,13 +16,9 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-import os
-from purbeurre import views
 
-if os.environ.get('ENV') == 'PRODUCTION':
-    app_name = 'nutella_platform.purbeurre'
-else:
-    name = 'purbeurre'
+from purbeurre import views
+app_name = "purbeurre"
 
 urlpatterns = [
     path('', views.index),
