@@ -8,7 +8,7 @@ import os
 import requests
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
-
+from pathlib import Path
 
 class Command(BaseCommand):
     """this class create a new command to call from the file manage.py
@@ -36,8 +36,8 @@ class Command(BaseCommand):
 
         list_of_categories = []
         list_of_url_categories = []
-        url_file = os.path.dirname(os.path.abspath(__file__))
-        files = open(str(url_file) + "purbeurre/url_import_openfood.txt", 'r')
+        url_file = Path(__file__).resolve().parent.parent
+        files = open(str(url_file) + "/url_import_openfood.txt", 'r')
 
         lines = files.readlines()
         for line in lines:
