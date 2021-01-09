@@ -4,7 +4,7 @@
 import json
 from purbeurre.models import Categories
 from purbeurre.models import Product
-
+import os
 import requests
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
@@ -36,7 +36,8 @@ class Command(BaseCommand):
 
         list_of_categories = []
         list_of_url_categories = []
-        files = open("purbeurre\\url_import_openfood.txt", 'r')
+        url_file = os.path.dirname(os.path.abspath(__file__))
+        files = open(str(url_file) + "purbeurre/url_import_openfood.txt", 'r')
 
         lines = files.readlines()
         for line in lines:
