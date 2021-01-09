@@ -115,7 +115,7 @@ class UrlPurbeurreTests(TestCase):
         time.sleep(2)
         self.assertEqual( self.browser.title, "Bienvenue Frost10")
 
-        self.browser.get('http://127.0.0.1:8000/purbeurre/show_product.html/?id=7487&search=boisson')
+        self.browser.get('http://127.0.0.1:8000/purbeurre/show_product.html/?id=8954&search=boisson')
         elem = self.browser.find_element_by_class_name('card_description').find_elements_by_tag_name("h5")[0]
         self.assertEqual(elem.text, "Repères nutritionnels pour 100g :")
         time.sleep(2)
