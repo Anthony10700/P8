@@ -36,7 +36,7 @@ class Command(BaseCommand):
 
         list_of_categories = []
         list_of_url_categories = []
-        url_file = Path(__file__).resolve().parent.parent
+        url_file = Path(__file__).resolve().parent.parent.parent
         files = open(str(url_file) + "/url_import_openfood.txt", 'r')
 
         lines = files.readlines()
