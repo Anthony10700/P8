@@ -53,7 +53,7 @@ class UrlPurbeurreTests(TestCase):
         elem =  self.browser.find_element_by_id('search-nav')
         elem.send_keys('boisson' + Keys.RETURN)
         time.sleep(2)
-        self.assertEqual( self.browser.title, "Vous n'êtes pas connecté.")
+        self.assertEqual( self.browser.title, "Resultats de votre recherche")
         time.sleep(2)
         self.browser.quit()
 

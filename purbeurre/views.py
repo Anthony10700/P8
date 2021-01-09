@@ -27,11 +27,8 @@ def get_item(dictionary, key):
     """
     return dictionary.get(key)
 
-# TODO: Voir la reactivite( responsive)  sur la hauteur du footer, et avec les formulaires
-
-
 def index(request):
-    """this view concern the index of the main page 
+    """this view concern the index of the main page
 
     Args:
         request ([type]): [description]
@@ -78,9 +75,21 @@ def resultats(request):
                 return render(request, result_dict["value"],  context=context)
 
     else:
-        context = {'title': "Vous n'êtes pas connecté.",
-                   'err_show': "Vous n'êtes pas connecté."}
-        return render(request, 'auth/sign_in.html',  context=context)
+        if request.method == 'GET':
+            result_dict = get_articles(request, 6)
+            if result_dict["methode"] == "redirect":
+                messages.error(request, result_dict["message"])
+                return redirect(result_dict["value"])
+            elif result_dict["methode"] == "render":
+                context = {'title': "Resultats de votre recherche",
+                           'articles_list': result_dict["seek"],
+                           'aliment_search': request.GET["search"],
+                           "paginate": result_dict["paginate"]}
+                return render(request, result_dict["value"],  context=context)
+        else:
+            context = {'title': "Vous n'êtes pas connecté.",
+                    'err_show': "Vous n'êtes pas connecté."}
+            return render(request, 'auth/sign_in.html',  context=context)
 
 
 def show_product(request):
@@ -93,24 +102,22 @@ def show_product(request):
         [type]: [description]
     """
     try:
-        if request.user.is_authenticated:
-            if request.method == 'GET':
-                result_dict = show_specify_product(request)
+        if request.method == 'GET':
+            result_dict = show_specify_product(request)
 
-                if result_dict["methode"] == "render" and "context" in result_dict:
-                    return render(request, result_dict["value"],  context=result_dict["context"])
-                elif result_dict["methode"] == "redirect" and "message" in result_dict:
-                    messages.error(request, result_dict["message"])
-                    context = {'title': "Product"}
-                    return render(request, 'purbeurre/resultats.html',  context=context)
-            else:
-                context = {'title': "Bienvenue"}
-                return render(request, 'purbeurre/index.html',  context=context)
-
+            if result_dict["methode"] == "render" and "context" in result_dict:
+                return render(request, result_dict["value"],  context=result_dict["context"])
+            elif result_dict["methode"] == "redirect" and "message" in result_dict:
+                messages.error(request, result_dict["message"])
+                context = {'title': "Product"}
+                return render(request, 'purbeurre/resultats.html',  context=context)
         else:
-            context = {'title': "Vous n'êtes pas connecté.",
-                       'err_show': "Vous n'êtes pas connecté."}
-            return render(request, 'auth/sign_in.html',  context=context)
+            context = {'title': "Bienvenue"}
+            return render(request, 'purbeurre/index.html',  context=context)
+
+            # context = {'title': "Vous n'êtes pas connecté.",
+            #            'err_show': "Vous n'êtes pas connecté."}
+            # return render(request, 'auth/sign_in.html',  context=context)
     except ValueError:
         context = {'title': "Bienvenue"}
         return render(request, 'purbeurre/index.html',  context=context)

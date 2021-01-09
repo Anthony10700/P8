@@ -2,13 +2,13 @@
 # !/usr/bin/python3
 # -*- coding: Utf-8 -*
 import json
-from purbeurre.models import Categories
-from purbeurre.models import Product
-import os
+from pathlib import Path
 import requests
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
-from pathlib import Path
+from purbeurre.models import Categories
+from purbeurre.models import Product
+
 
 class Command(BaseCommand):
     """this class create a new command to call from the file manage.py
