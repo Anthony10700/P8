@@ -33,3 +33,7 @@
 * You can save them and search for substitutes, but you will need to create an account first.
 
 ## Example
+
+![](https://github.com/Anthony10700/P8/blob/master/img-ex/p8-1.PNG?raw=true)
+![](https://github.com/Anthony10700/P8/blob/master/img-ex/p8-2.PNG?raw=true)
+![](https://github.com/Anthony10700/P8/blob/master/img-ex/p8-3.PNG?raw=true)
