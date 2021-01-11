@@ -1,5 +1,5 @@
 ## About Project 8
-- This deposit concerns project number 8 of openclassrooms you will find below the instructions for the installation the necessary information
+- This deposit concerns the project number 8 of openclassrooms that you can find below the instruction for the installation and the necessary information
 - URL HEROKU https://purbeurre-at.herokuapp.com/purbeurre/index.html
 
 ## For installation
@@ -9,7 +9,7 @@
     * `$ virtualenv -p python3 venv` 
     * `$ activate venv` 
 * Clone this repository on the same folder with venv
-* Install the requirements :
+* Install requirements :
     * `$ pip install -r requirements.txt`
     * install https://www.postgresql.org/ on your os
         * Make data base :
