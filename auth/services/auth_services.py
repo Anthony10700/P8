@@ -6,7 +6,9 @@
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib.auth import get_user_model
 from auth.forms import CustomUserCreationForm
+
 
 def sign_validation(request):
     """This method test if a form is valide return to a dictionary
@@ -46,13 +48,17 @@ def connect_validation(request):
         dictionary: "methode": "", "value": "" ,"messages":""
     """
     result_dict = {"methode": "", "value": ""}
-    if 'inputUsername' in request.POST and 'inputPassword' in request.POST:
-        username = request.POST['inputUsername']
-        password = request.POST['inputPassword']
+    if 'inputPassword_connect' in request.POST \
+            and 'inputEmail_connect' in request.POST:
+        email = request.POST['inputEmail_connect']
+        password = request.POST['inputPassword_connect']
         password = make_password(password=password,
                                  salt="1",
                                  hasher='pbkdf2_sha256')
-        user = authenticate(request, username=username, password=password)
+        user_get = get_user_model()
+        user_get = user_get.objects.get(email=email)
+        user = authenticate(request,
+                            username=user_get.username, password=password)
         if user is not None:
             login(request, user)
             request.session.set_expiry(3600)
@@ -102,7 +108,8 @@ def get_history_article(request, nb_of_articles_per_page):
 
     Returns:
         render: render of views, contains all articles saved, in articles_list
-        paginate in context is for: True the button show in html page, False the button no visible
+        paginate in context is for: True the button show in html page,
+        False the button no visible
     """
     result_dict = {"methode": "", "value": ""}
     recherche = request.user.save_product.all()
@@ -133,7 +140,8 @@ def get_page(page, all_product, nb_of_articles_per_page):
 
     Returns:
         tuple: nb_of_articles_per_page product and paginate.
-        paginate in context is for: True the button show in html page, False the button no visible
+        paginate in context is for: True the button show in html page,
+        False the button no visible
     """
     paginator = Paginator(all_product, nb_of_articles_per_page)
 
@@ -162,10 +170,12 @@ def replace_short_dash(all_product_result):
         [product list]: list of products
     """
     try:
+        iter(all_product_result)
+    except TypeError:
+        all_product_result.categories.name = \
+            all_product_result.categories.name.replace("-", " ")
+        return all_product_result
+    else:
         for arct in all_product_result:
             arct.categories.name = arct.categories.name.replace("-", " ")
-        return all_product_result
-    except:
-        all_product_result.categories.name = all_product_result.categories.name.replace(
-            "-", " ")
         return all_product_result

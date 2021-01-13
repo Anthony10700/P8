@@ -4,8 +4,8 @@
         [type]: [description]
     """
 import json
-from purbeurre.models import Product
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from purbeurre.models import Product
 
 
 def save_product_result(user, request):
@@ -14,23 +14,30 @@ def save_product_result(user, request):
     Returns:
         dictionary: "methode": "", "value": "" and "messages":""
     """
-    result_dict = {"methode": "", "value": ""}
+    result_dict = {"methode": "", "value": ""}  # dictionnary return
     try:
         product_show = Product.objects.get(id=request.POST["id"])
-        product_show.save_product.add(user)
-        product_show.save()
+        # select a product that matches to request id
+        product_show.save_product.add(user)  # add user to selected products
+        product_show.save()  # save selected products in data base
         result_dict["methode"] = "redirect"
+        # set method redirect in key methode
         result_dict["value"] = request.path_info + \
             "?search=" + request.POST["search"]
+        #  set value of path in key value
         result_dict["message"] = 'Votre article à bien été enregistré'
-
-        return result_dict
+        #  set message for user in key message
+        return result_dict  # returns dictionnary to views
 
     except:
-        result_dict["methode"] = "render"
-        result_dict["value"] = 'purbeurre/resultats.html'
-        result_dict["message"] = "Erreur dans l'enregistrement de votre produit"
-        return result_dict
+        result_dict["methode"] = "render"  # set method render in key
+        # methode if try error
+        result_dict["value"] = 'purbeurre/resultats.html'  # set value
+        # of path in key value
+        result_dict["message"] = "Erreur dans l'enregistrement \
+            de votre produit"
+        #  set message for user in key message
+        return result_dict  # returns dictionnary to views
 
 
 def get_articles(request, nb_of_articles_per_page):
@@ -83,30 +90,41 @@ def show_specify_product(request):
         dictionary: "methode": "", "value": "" and "context":""
     """
     try:
-        result_dict = {"methode": "", "value": ""}
-        product_show = Product.objects.get(id=request.GET["id"])
+        result_dict = {"methode": "", "value": ""}  # dictionnary return
+        product_show = Product.objects.get(id=request.GET["id"])  # select a
+        # product that matches to request id
 
         product_show = replace_indent(product_show)
+        # replace all short dash in the product_show.name
 
         prod = json.loads(product_show.nutriments)
+        # load the JSON string into the database
 
         if "search" in request.GET:
             search = request.GET["search"]
         else:
             search = ""
+        # check search in the request get ,
+        # because the field must be returned to the user
+
         result_dict["methode"] = "render"
+        # set method render in key methode
         result_dict["value"] = 'purbeurre/show_product.html'
+        # set page resultats in key value
         result_dict["context"] = {'title': "resultats de votre recherche",
                                   'articles_list': product_show,
                                   'aliment_search': search, "nutriments": prod}
+        # set context in key context for the views
 
-        return result_dict
-
+        return result_dict  # returns dictionnary to views
     except:
         result_dict["methode"] = "redirect"
+        # set method redirect in key methode
         result_dict["value"] = "resultat"
+        # set value resultat in key value
         result_dict["message"] = "Erreur dans la recherche de votre produit"
-        return result_dict
+        # set message for user in key message
+        return result_dict  # returns dictionnary to views
 
 
 def remove_product(request):
@@ -130,9 +148,9 @@ def get_page(page, all_product, nb_of_articles_per_page):
 
     Returns:
         tuple: nb_of_articles_per_page product and paginate.
-        paginate in context is for: True the button show in html page, False the button no visible
+        paginate in context is for: True the button show in html page,
+        False the button no visible
     """
-    
     paginator = Paginator(all_product, nb_of_articles_per_page)
 
     try:
@@ -164,6 +182,6 @@ def replace_indent(all_product_result):
             arct.categories.name = arct.categories.name.replace("-", " ")
         return all_product_result
     except:
-        all_product_result.categories.name = all_product_result.categories.name.replace(
-            "-", " ")
+        all_product_result.categories.name = \
+            all_product_result.categories.name.replace("-", " ")
         return all_product_result

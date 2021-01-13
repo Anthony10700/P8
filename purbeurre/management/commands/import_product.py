@@ -1,4 +1,5 @@
-"""The script is for the import of the  api from open food facts data in the  data base """
+"""The script is for the import of the  api from open food facts
+data in the  data base """
 # !/usr/bin/python3
 # -*- coding: Utf-8 -*
 import json
@@ -11,7 +12,8 @@ from purbeurre.models import Product
 
 
 class Command(BaseCommand):
-    """this class create a new command to call from the file manage.py
+    """this class create a new command to call from
+    the file manage.py
 
     Args:
         BaseCommand ([type]): [description]
@@ -31,8 +33,8 @@ class Command(BaseCommand):
         self.main()
 
     def main(self):
-        """This method import the api  of open food facts data and make new DATA BASE myslq and
-        table """
+        """This method import the api  of open food facts data
+        and make new DATA BASE myslq and table """
 
         list_of_categories = []
         list_of_url_categories = []
@@ -96,7 +98,8 @@ class Command(BaseCommand):
         print("#################################")
         print("#################################")
         for var_i, item in enumerate(list_of_url_categories):
-            #  insert in database all categories completed_name, URL and nb_of_products
+            #  insert in database all categories completed_name,
+            #  URL and nb_of_products
             product_ = list_of_categories[var_i]
             url = item
             name_produc = str(item).split("/")[4].replace(".json", "")
@@ -122,7 +125,8 @@ class Command(BaseCommand):
                        "stores", "categories"]
 
         for categ in data_all:
-            #  insert all products in database with the fk_key FOREIGN KEY (`categories_idcategories`)"
+            #  insert all products in database with the fk_key FOREIGN KEY
+            # (categories_idcategories)"
             #  REFERENCES `openfoodfacts`.`categories` (`idcategories`)"
 
             print(categ)
@@ -145,33 +149,34 @@ class Command(BaseCommand):
 
                 if produit_value_ok:
                     if "energy-kcal_100g" in product["nutriments"] and \
-                    "energy_100g" in product["nutriments"] and \
-                    "fat_100g" in product["nutriments"] and \
-                    "saturated-fat_100g" in product["nutriments"] and\
-                    "carbohydrates_100g" in product["nutriments"] and\
-                    "sugars_100g" in product["nutriments"] and\
-                    "proteins_100g" in product["nutriments"] and\
-                    "salt_100g" in product["nutriments"] and\
-                    "sodium_100g" in product["nutriments"] and\
-                    "nutrition-score-fr_100g" in product["nutriments"]:
+                        "energy_100g" in product["nutriments"] and \
+                        "fat_100g" in product["nutriments"] and \
+                        "saturated-fat_100g" in product["nutriments"] and\
+                        "carbohydrates_100g" in product["nutriments"] and\
+                        "sugars_100g" in product["nutriments"] and\
+                        "proteins_100g" in product["nutriments"] and\
+                        "salt_100g" in product["nutriments"] and\
+                        "sodium_100g" in product["nutriments"] and\
+                            "nutrition-score-fr_100g" in product["nutriments"]:
 
                         tmp = json.dumps(product["nutriments"])
                         try:
-                            product_bdd = Product.objects.create(name=product["product_name"],
-                                                                 countries=product["countries"],
-                                                                 id_openfoodfacts=product["id"],
-                                                                 url=product["url"],
-                                                                 image_url=product["image_url"],
-                                                                 store=product["stores"],
-                                                                 nutriscore_grade=nutri_value,
-                                                                 categories=categories_fk,
-                                                                 nutriments=tmp)
+                            product_bdd = Product.objects.create(
+                                name=product["product_name"],
+                                countries=product["countries"],
+                                id_openfoodfacts=product["id"],
+                                url=product["url"],
+                                image_url=product["image_url"],
+                                store=product["stores"],
+                                nutriscore_grade=nutri_value,
+                                categories=categories_fk,
+                                nutriments=tmp)
 
                             product_bdd.save()
 
                         except IntegrityError:
-                            self.stdout.write(
-                                "########## la valeur d'une clé dupliquée rompt la contrainte unique ##########")
+                            self.stdout.write("######## la valeur d'une \
+                            clé dupliquée rompt la contrainte unique ########")
 
         self.stdout.write("########## FIN ##########")
 

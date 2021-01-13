@@ -1,6 +1,7 @@
-from django.conf import settings
-from django.contrib import admin
-from django.urls import path, include
+"""
+url file
+"""
+from django.urls import path
 
 from . import views
 

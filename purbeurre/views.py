@@ -1,5 +1,6 @@
 """
-    Views for purbeurre app, contain the views of results, show_product, unsave, legale and 404
+    Views for purbeurre app, contain the views of results,
+    show_product, unsave, legale and 404
 
 
     Returns:
@@ -11,7 +12,9 @@ from django.db import transaction
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.template.defaulttags import register
-from purbeurre.services.purbeurre_services import save_product_result, get_articles, show_specify_product, get_page, remove_product, replace_indent
+from purbeurre.services.purbeurre_services import save_product_result,\
+    get_articles, show_specify_product,\
+    get_page, remove_product, replace_indent
 
 
 @register.filter
@@ -26,6 +29,7 @@ def get_item(dictionary, key):
         string: value of your dictionary key
     """
     return dictionary.get(key)
+
 
 def index(request):
     """this view concern the index of the main page
@@ -87,8 +91,9 @@ def resultats(request):
                            "paginate": result_dict["paginate"]}
                 return render(request, result_dict["value"],  context=context)
         else:
-            context = {'title': "Vous n'êtes pas connecté.",
-                    'err_show': "Vous n'êtes pas connecté."}
+            context = {
+                'title': "Vous n'êtes pas connecté.",
+                'err_show': "Vous n'êtes pas connecté."}
             return render(request, 'auth/sign_in.html',  context=context)
 
 
@@ -106,11 +111,14 @@ def show_product(request):
             result_dict = show_specify_product(request)
 
             if result_dict["methode"] == "render" and "context" in result_dict:
-                return render(request, result_dict["value"],  context=result_dict["context"])
-            elif result_dict["methode"] == "redirect" and "message" in result_dict:
+                return render(request, result_dict["value"],
+                              context=result_dict["context"])
+            elif result_dict["methode"] == "redirect"\
+                    and "message" in result_dict:
                 messages.error(request, result_dict["message"])
                 context = {'title': "Product"}
-                return render(request, 'purbeurre/resultats.html',  context=context)
+                return render(request, 'purbeurre/resultats.html',
+                              context=context)
         else:
             context = {'title': "Bienvenue"}
             return render(request, 'purbeurre/index.html',  context=context)
@@ -198,8 +206,9 @@ def page_not_found_view(request, exception=None):
 
     Args:
         request ([type]): which is the URL that resulted in the error
-        exception ([type]): which is a useful representation of the exception that
-        triggered the view (e.g. containing any message passed to a specific Http404 instance).
+        exception ([type]): which is a useful representation of the
+        exception that triggered the view
+        (e.g. containing any message passed to a specific Http404 instance).
 
     Returns:
         [type]: [description]
@@ -207,13 +216,15 @@ def page_not_found_view(request, exception=None):
 
     return render(request, '404.html')
 
+
 def page_server_error(request, exception=None):
     """Customizing error views page_server_error
 
     Args:
         request ([type]): which is the URL that resulted in the error
-        exception ([type]): which is a useful representation of the exception that
-        triggered the view (e.g. containing any message passed to a specific Http404 instance).
+        exception ([type]): which is a useful representation of the
+        exception that triggered the view
+        (e.g. containing any message passed to a specific Http404 instance).
 
     Returns:
         render: [description]

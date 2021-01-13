@@ -1,13 +1,8 @@
 """
         class of test viewe purbeurre
     """
-import json
-from django.test import TestCase, RequestFactory, TransactionTestCase, Client
-from purbeurre.services.purbeurre_services import save_product_result, get_articles, show_specify_product, remove_product, replace_indent, get_page
-from django.contrib.auth import get_user_model
-from purbeurre.models import Categories, Product
+from django.test import TestCase, Client
 # Create your tests here.
-from purbeurre.templatetags.utils import get_item
 
 
 class UrlAuthTests(TestCase):
@@ -51,7 +46,8 @@ class UrlAuthTests(TestCase):
         response = self.client.get('/auth/account.html')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
-            response.context['account_info']["Email"], "Test-accound@monmail.com")
+            response.context['account_info']["Email"],
+            "Test-accound@monmail.com")
 
     def test_history(self):
         """This method test the history url
@@ -104,8 +100,11 @@ class UrlAuthTests(TestCase):
     def make_account(self):
         """This method make a account for testing the url form sign_in
         """
-        info = {"inputUsername": "Test_accound", "inputemail": "Test-accound@monmail.com",
-                "inputPassword1": "Test_psw", "inputPassword2": "Test_psw", "inputNom": "Test_Nom",
+        info = {"inputUsername": "Test_accound",
+                "inputemail": "Test-accound@monmail.com",
+                "inputPassword1": "Test_psw",
+                "inputPassword2": "Test_psw",
+                "inputNom": "Test_Nom",
                 "inputprenom": "Test_prenom"}
         response = self.client.post('/auth/sign_in.html', data=info)
         self.assertEqual(response.status_code, 302)

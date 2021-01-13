@@ -8,7 +8,8 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.core.exceptions import ValidationError
-from auth.services.auth_services import connect_validation, account_get_info, get_history_article, sign_validation
+from auth.services.auth_services import connect_validation, account_get_info,\
+    get_history_article, sign_validation
 
 # Create your views here.
 
@@ -31,7 +32,8 @@ def sign_in(request):
                     return redirect(result_dict["value"])
                 elif result_dict["methode"] == "render":
                     context = {'form': result_dict["form"]}
-                    return render(request, result_dict["value"], context=context)
+                    return render(request, result_dict["value"],
+                                  context=context)
             except ValidationError as err:
                 messages.error(request, err.message)
                 return redirect('sign_in')
@@ -69,7 +71,7 @@ def connect(request):
 
 
 def account(request):
-    """this view concern the account 
+    """this view concern the account
 
     Args:
         request ([type]): [description]
@@ -116,8 +118,10 @@ def history(request):
     if request.user.is_authenticated:
         result_dict = get_history_article(request, 6)
         if result_dict["methode"] == "render":
-            context = {'title': "Historique de vos articles", 'articles_list': result_dict["seek"],
-                       "paginate": result_dict["paginate"], 'aliment_search': ""}
+            context = {'title': "Historique de vos articles",
+                       'articles_list': result_dict["seek"],
+                       "paginate": result_dict["paginate"],
+                       'aliment_search': ""}
             return render(request, result_dict["value"],  context=context)
 
     else:
