@@ -21,7 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'u4@@a^-+vostdl)3dglw$ceb97*m08rc+m+wqmc%-@g+-2f&dr') # development key for the moment
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'u4@@a^-+vostdl)3dglw$ceb97*m08rc+m+wqmc%-@g+-2f&dr')
+# development key for the moment
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
@@ -29,7 +32,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['purbeurre-at.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['purbeurre-at.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -83,22 +86,21 @@ WSGI_APPLICATION = 'nutella_platform.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa: E501
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa: E501
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa: E501
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa: E501
     },
 ]
 
@@ -125,30 +127,32 @@ STATIC_URL = '/static/'
 INTERNAL_IP = ['127.0.0.1']
 
 
-
 if os.environ.get('ENV') == 'PRODUCTION':
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
     STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static'),        
+        os.path.join(PROJECT_ROOT, 'static'),
     )
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-    DATABASES = {'default':{}}
+    DATABASES = {'default': {}}
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
 else:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # on utilise l'adaptateur postgresql
-        'NAME': 'nutella_platform',  # le nom de notre base de données créée précédemment
-        'USER': 'postgres',  # attention : remplacez par votre nom d'utilisateur !!
-        'PASSWORD': 'azerty',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            # on utilise l'adaptateur postgresql
+            'NAME': 'nutella_platform',
+            # le nom de notre base de données créée précédemment
+            'USER': 'postgres',
+            # attention : remplacez par votre nom d'utilisateur !!
+            'PASSWORD': 'azerty',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+            }
     }
     STATICFILES_DIRS = []
     STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'purbeurre/static/'),
-    os.path.join(BASE_DIR, 'auth/static/'),
+        os.path.join(BASE_DIR, 'purbeurre/static/'),
+        os.path.join(BASE_DIR, 'auth/static/'),
     ]

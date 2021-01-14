@@ -12,6 +12,7 @@ from django.db import transaction
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.template.defaulttags import register
+from django.core.exceptions import ObjectDoesNotExist
 from purbeurre.services.purbeurre_services import save_product_result,\
     get_articles, show_specify_product,\
     get_page, remove_product, replace_indent
@@ -157,7 +158,7 @@ def unsave(request):
                            "paginate": paginate}
                 return render(request, 'auth/history.html',  context=context)
 
-            except:
+            except ObjectDoesNotExist:
                 all_product_result = request.user.save_product.all()
 
                 all_product_result = replace_indent(all_product_result)

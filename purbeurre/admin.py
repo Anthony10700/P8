@@ -3,6 +3,7 @@
 from django.contrib import admin
 from purbeurre.models import Product, Categories
 
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     """admin product panel
@@ -10,8 +11,9 @@ class ProductAdmin(admin.ModelAdmin):
     Args:
         admin ([type]): [description]
     """
-    search_fields  = ['name', 'id']
-    list_filter = ['categories','save_product']
+    search_fields = ['name', 'id']
+    list_filter = ['categories', 'save_product']
+
 
 @admin.register(Categories)
 class CategoriesAdmin(admin.ModelAdmin):
@@ -20,5 +22,4 @@ class CategoriesAdmin(admin.ModelAdmin):
     Args:
         admin ([type]): [description]
     """
-    search_fields  = ['name', 'id']
-    
+    search_fields = ['name', 'id']

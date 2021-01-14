@@ -15,7 +15,7 @@ class Categories(models.Model):
     class Meta:
         ordering = ['-id']
         verbose_name = "Category"
-        verbose_name_plural  = "Categories"
+        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.name
@@ -31,15 +31,14 @@ class Product(models.Model):
         models ([type]): [description]
     """
 
-
     class Meta:
         ordering = ['-id']
         verbose_name = "Product"
-        verbose_name_plural  = "Products"
+        verbose_name_plural = "Products"
 
     def __str__(self):
         return self.name
-        
+
     name = models.CharField(max_length=800, unique=False, null=False)
     countries = models.CharField(max_length=800, unique=False, null=True)
     id_openfoodfacts = models.CharField(
@@ -51,4 +50,6 @@ class Product(models.Model):
     categories = models.ForeignKey(Categories, on_delete=models.CASCADE)
     nutriments = models.CharField(max_length=8000, unique=False, null=False)
     user_id = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name="save_product", name="save_product")
+        settings.AUTH_USER_MODEL,
+        related_name="save_product",
+        name="save_product")

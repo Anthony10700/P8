@@ -11,10 +11,9 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-
-
 # if os.environ.get('ENV') == 'PRODUCTION':
-#     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nutella_platform.nutella_platform.settings')
+#     os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+#  'nutella_platform.nutella_platform.settings')
 # else:
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nutella_platform.settings')
 

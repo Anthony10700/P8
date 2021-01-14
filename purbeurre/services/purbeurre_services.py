@@ -5,6 +5,7 @@
     """
 import json
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.core.exceptions import ObjectDoesNotExist
 from purbeurre.models import Product
 
 
@@ -29,7 +30,7 @@ def save_product_result(user, request):
         #  set message for user in key message
         return result_dict  # returns dictionnary to views
 
-    except:
+    except ObjectDoesNotExist:
         result_dict["methode"] = "render"  # set method render in key
         # methode if try error
         result_dict["value"] = 'purbeurre/resultats.html'  # set value
@@ -72,7 +73,7 @@ def get_articles(request, nb_of_articles_per_page):
         result_dict["seek"] = seek
         return result_dict
 
-    except:
+    except ObjectDoesNotExist:
         result_dict["methode"] = "redirect"
         result_dict["value"] = "resultat"
         result_dict["message"] = "Erreur dans la recherche de votre produit"
@@ -117,7 +118,7 @@ def show_specify_product(request):
         # set context in key context for the views
 
         return result_dict  # returns dictionnary to views
-    except:
+    except ObjectDoesNotExist:
         result_dict["methode"] = "redirect"
         # set method redirect in key methode
         result_dict["value"] = "resultat"
@@ -178,10 +179,12 @@ def replace_indent(all_product_result):
         [product list]: list of product
     """
     try:
-        for arct in all_product_result:
-            arct.categories.name = arct.categories.name.replace("-", " ")
-        return all_product_result
-    except:
+        iter(all_product_result)
+    except TypeError:
         all_product_result.categories.name = \
             all_product_result.categories.name.replace("-", " ")
+        return all_product_result
+    else:
+        for arct in all_product_result:
+            arct.categories.name = arct.categories.name.replace("-", " ")
         return all_product_result

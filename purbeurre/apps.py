@@ -1,5 +1,12 @@
+"""PurbeurreConfig
+    """
 from django.apps import AppConfig
-import os
+
 
 class PurbeurreConfig(AppConfig):
+    """PurbeurreConfig for purbeurre app
+
+    Args:
+        AppConfig ([type]): [description]
+    """
     name = 'purbeurre'

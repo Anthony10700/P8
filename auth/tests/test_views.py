@@ -85,13 +85,15 @@ class UrlAuthTests(TestCase):
 
         self.make_account()
 
-        info = {"inputUsername": "Test_accound", "inputPassword": "Test_psw"}
+        info = {"inputEmail_connect": "Test-accound@monmail.com",
+                "inputPassword_connect": "Test_psw"}
         response = self.client.post('/auth/connection.html', data=info)
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, "/auth/account.html")
 
-        info = {"inputUsername": "Test_accound", "inputPassword": "Tsdqsdqs"}
+        info = {"inputEmail_connect": "Test-accound@monmail.com",
+                "inputPassword_connect": "Tsdqsdqs"}
         response = self.client.post('/auth/connection.html', data=info)
 
         self.assertEqual(response.status_code, 302)

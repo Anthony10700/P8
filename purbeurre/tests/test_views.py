@@ -56,11 +56,12 @@ class UrlPurbeurreTests(TestCase):
         """test connection with selenium
         """
         self.browser.get('http://127.0.0.1:8000/auth/sign_in.html')
-        inputusername = self.browser.find_element_by_id('inputUsername')
-        inputusername.send_keys('Frost10')
-        inputpassword = self.browser.find_element_by_id('inputPassword')
+        inputusername = self.browser.find_element_by_id('inputEmail_connect')
+        inputusername.send_keys('anthony.thillerot@laposte.nett')
+        inputpassword = self.browser.find_element_by_id(
+            'inputPassword_connect')
         inputpassword.send_keys('azerty')
-        grid = self.browser.find_element_by_id('gridCheck')
+        grid = self.browser.find_element_by_id('gridCheck_connect')
         grid.click()
         button = self.browser.find_element_by_id('button_valid_form')
         button.click()
@@ -73,11 +74,12 @@ class UrlPurbeurreTests(TestCase):
         """test searh connection with selenium
         """
         self.browser.get('http://127.0.0.1:8000/auth/sign_in.html')
-        inputusername = self.browser.find_element_by_id('inputUsername')
-        inputusername.send_keys('Frost10')
-        inputpassword = self.browser.find_element_by_id('inputPassword')
+        inputusername = self.browser.find_element_by_id('inputEmail_connect')
+        inputusername.send_keys('anthony.thillerot@laposte.nett')
+        inputpassword = self.browser.find_element_by_id(
+            'inputPassword_connect')
         inputpassword.send_keys('azerty')
-        grid = self.browser.find_element_by_id('gridCheck')
+        grid = self.browser.find_element_by_id('gridCheck_connect')
         grid.click()
         button = self.browser.find_element_by_id('button_valid_form')
         button.click()
@@ -99,11 +101,12 @@ class UrlPurbeurreTests(TestCase):
         """test show_product with selenium
         """
         self.browser.get('http://127.0.0.1:8000/auth/sign_in.html')
-        inputusername = self.browser.find_element_by_id('inputUsername')
-        inputusername.send_keys('Frost10')
-        inputpassword = self.browser.find_element_by_id('inputPassword')
+        inputusername = self.browser.find_element_by_id('inputEmail_connect')
+        inputusername.send_keys('anthony.thillerot@laposte.nett')
+        inputpassword = self.browser.find_element_by_id(
+            'inputPassword_connect')
         inputpassword.send_keys('azerty')
-        grid = self.browser.find_element_by_id('gridCheck')
+        grid = self.browser.find_element_by_id('gridCheck_connect')
         grid.click()
         button = self.browser.find_element_by_id('button_valid_form')
         button.click()
@@ -111,8 +114,7 @@ class UrlPurbeurreTests(TestCase):
         self.assertEqual(self.browser.title, "Bienvenue Frost10")
 
         self.browser.get(
-            'http://127.0.0.1:8000/purbeurre/show_product.html/\
-                ?id=8954&search=boisson')
+            'http://127.0.0.1:8000/purbeurre/show_product.html/?id=8954&search=boisson')  # noqa: E501
         elem = self.browser.find_element_by_class_name(
             'card_description').find_elements_by_tag_name("h5")[0]
         self.assertEqual(elem.text, "Repères nutritionnels pour 100g :")

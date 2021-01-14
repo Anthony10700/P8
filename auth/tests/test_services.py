@@ -31,12 +31,13 @@ class TestMyServicesAuth(TransactionTestCase):
     def make_account(self):
         """this method can create an account for the test
         """
-        info = {"inputUsername": "Test_accound2", "inputemail":
-                "Test-accound@monmail.com2",
-                "inputPassword1": "Test_psw2",
-                "inputPassword2": "Test_psw2",
-                "inputNom": "Test_Nom",
-                "inputprenom": "Test_prenom"}
+        info = {
+            "inputUsername": "Test_accound2",
+            "inputemail": "Test-accound@monmail.com2",
+            "inputPassword1": "Test_psw2",
+            "inputPassword2": "Test_psw2",
+            "inputNom": "Test_Nom",
+            "inputprenom": "Test_prenom"}
         response = self.client.post('/auth/sign_in.html', data=info)
         self.assertEqual(response.status_code, 302)
 
@@ -48,10 +49,13 @@ class TestMyServicesAuth(TransactionTestCase):
     def test_sign_validation(self):
         """this method test the inscription
         """
-        info = {"inputUsername": "Test_accound", "inputemail":
-                "Test-accound@monmail.com", "inputPassword1": "Test_psw",
-                "inputPassword2": "Test_psw",
-                "inputNom": "Test_Nom", "inputprenom": "Test_prenom"}
+        info = {
+            "inputUsername": "Test_accound",
+            "inputemail": "Test-accound@monmail.com",
+            "inputPassword1": "Test_psw",
+            "inputPassword2": "Test_psw",
+            "inputNom": "Test_Nom",
+            "inputprenom": "Test_prenom"}
         request = self.factory.post('/auth/sign_in.html', data=info)
         request.session = self.client.session
         result = sign_validation(request)
@@ -83,7 +87,9 @@ class TestMyServicesAuth(TransactionTestCase):
         """this method test the account connection
         """
         self.make_account()
-        info = {"inputUsername": "Test_accound2", "inputPassword": "Test_psw2"}
+        info = {
+            "inputEmail_connect": "Test-accound@monmail.com2",
+            "inputPassword_connect": "Test_psw2"}
         request = self.factory.post('/auth/sign_in.html', data=info)
         request.session = self.client.session
         # request.user = User.objects.get(username="Test_accound2")
@@ -96,7 +102,9 @@ class TestMyServicesAuth(TransactionTestCase):
         """
         user = get_user_model()
         self.make_account()
-        info = {"inputUsername": "Test_accound2", "inputPassword": "Test_psw2"}
+        info = {
+            "inputEmail_connect": "Test-accound@monmail.com2",
+            "inputPassword_connect": "Test_psw2"}
         request = self.factory.post('/auth/sign_in.html', data=info)
         request.session = self.client.session
         request.user = user.objects.get(username="Test_accound2")
@@ -122,8 +130,7 @@ class TestMyServicesAuth(TransactionTestCase):
         """
         categories = Categories.objects.create(
             name="boissons-a-la-canneberge",
-            url="https://fr.openfoodfacts.org/categorie/\
-                boissons-a-la-canneberge.json",
+            url="https://fr.openfoodfacts.org/categorie/boissons-a-la-canneberge.json",  # noqa: E501
             nb_of_products=int(54))
 
         categories.save()
@@ -164,10 +171,8 @@ class TestMyServicesAuth(TransactionTestCase):
             name="Cranberry",
             countries="France",
             id_openfoodfacts="3596710355051",
-            url="https://fr.openfoodfacts.org/produit/3596710355051/\
-                cranberry-auchan",
-            image_url="https://static.openfoodfacts.org/images/\
-                products/359/671/035/5051/front_fr.45.400.jpg",
+            url="https://fr.openfoodfacts.org/produit/3596710355051/cranberry-auchan",  # noqa: E501
+            image_url="https://static.openfoodfacts.org/images/products/359/671/035/5051/front_fr.45.400.jpg",  # noqa: E501
             store="Auchan",
             nutriscore_grade="e",
             categories=categories_fk,

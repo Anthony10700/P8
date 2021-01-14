@@ -52,8 +52,7 @@ class TestMyServicesPurbeurre(TransactionTestCase):
         """
         categories = Categories.objects.create(
             name="boissons-a-la-canneberge",
-            url="https://fr.openfoodfacts.org/categorie/\
-                boissons-a-la-canneberge.json",
+            url="https://fr.openfoodfacts.org/categorie/boissons-a-la-canneberge.json",  # noqa: E501
             nb_of_products=int(54))
 
         categories.save()
@@ -92,10 +91,8 @@ class TestMyServicesPurbeurre(TransactionTestCase):
             name="Cranberry",
             countries="France",
             id_openfoodfacts="3596710355051",
-            url="https://fr.openfoodfacts.org/produit/\
-                3596710355051/cranberry-auchan",
-            image_url="https://static.openfoodfacts.org/\
-                images/products/359/671/035/5051/front_fr.45.400.jpg",
+            url="https://fr.openfoodfacts.org/produit/3596710355051/cranberry-auchan",  # noqa: E501
+            image_url="https://static.openfoodfacts.org/images/products/359/671/035/5051/front_fr.45.400.jpg",  # noqa: E501
             store="Auchan",
             nutriscore_grade="e",
             categories=categories_fk,
