@@ -2,26 +2,20 @@ language: python
 python:
   - '3.6'
 
+# safelist
 branches:
   only:
     - staging
-
-addons:
-  firefox: "60.0.1"
-
-before_install:
-  - wget https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-linux64.tar.gz
-  - mkdir geckodriver
-  - tar -xzf geckodriver-v0.20.1-linux64.tar.gz -C geckodriver
-  - export PATH=$PATH:$PWD/geckodriver
+    - master
 
 before_script:
+  - python -m pip install --upgrade pip
   - pip install -r requirements.txt
-
-env: DJANGO_SETTINGS_MODULE="nutella_platform.settings.travis"
 
 services:
   - postgresql
 
+env: DJANGO_SETTINGS_MODULE=nutella_platform.settings.travis
+
 script:
-  - ./manage.py test
+  - python manage.py test
