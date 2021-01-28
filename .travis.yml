@@ -18,7 +18,7 @@ before_install:
 before_script:
   - pip install -r requirements.txt
 
-env: DJANGO_SETTINGS_MODULE="purbeurre_platform.settings.travis"
+env: DJANGO_SETTINGS_MODULE="nutella_platform.settings.travis"
 
 services:
   - postgresql
