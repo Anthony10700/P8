@@ -17,4 +17,4 @@ services:
 env: DJANGO_SETTINGS_MODULE=nutella_platform.settings.travis
 
 script:
-  - manage.py test
+  - python3 manage.py test
