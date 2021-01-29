@@ -12,6 +12,10 @@ branches:
 addons:
   firefox: latest
 
+env:
+  global:
+    - DJANGO_SETTINGS_MODULE="nutella_platform.settings.travis"
+    
 before_install:
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz
   - mkdir geckodriver
@@ -26,14 +30,12 @@ before_script:
   - python -m pip install --upgrade pip
   - pip install -r requirements.txt
   - install-webdrivers --path webdrivers
+  - python manage.py runserver &
 
-env:
-  global:
-    - DJANGO_SETTINGS_MODULE="nutella_platform.settings.travis"
+
 
 services:
   - postgresql
 
 script:
-  - python manage.py runserver
   - python manage.py test
