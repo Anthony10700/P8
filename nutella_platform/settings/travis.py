@@ -1,10 +1,10 @@
-from . import *
+from __init__ import *
 
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '',
+        'NAME': 'nutella_platform',
         'USER': 'postgres',
         'PASSWORD': '',
         'HOST': '',
