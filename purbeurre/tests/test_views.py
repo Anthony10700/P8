@@ -7,6 +7,9 @@ from django.test import TestCase, Client
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+firefox_options = webdriver.FirefoxOptions()
+firefox_options.headless = True
+
 
 class UrlPurbeurreTests(TestCase):
     """
@@ -20,7 +23,9 @@ class UrlPurbeurreTests(TestCase):
         """
         # Every test needs a client.
         self.client = Client()
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Firefox(options=firefox_options)
+        self.browser.implicitly_wait(30)
+        self.browser.maximize_window()
 
     def test_index(self):
         """
