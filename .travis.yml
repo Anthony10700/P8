@@ -1,3 +1,4 @@
+dist: bionic
 language: python
 
 python:
@@ -35,4 +36,3 @@ services:
 
 script:
   - python manage.py test
-  
