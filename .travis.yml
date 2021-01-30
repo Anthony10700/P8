@@ -31,6 +31,8 @@ before_script:
   - python -m pip install --upgrade pip
   - pip install -r requirements.txt
   - install-webdrivers --path webdrivers
+  - psql -c 'create database nutella_platform;' -U postgres
+  - python manage.py migrate
   - python manage.py runserver &
 
 
