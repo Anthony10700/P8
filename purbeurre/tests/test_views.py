@@ -27,7 +27,6 @@ class UrlPurbeurreTests(TestCase):
         self.browser.implicitly_wait(30)
         self.browser.maximize_window()
         
-
     def test_index(self):
         """
         This method test the index url
@@ -72,7 +71,7 @@ class UrlPurbeurreTests(TestCase):
         grid.click()
         button = self.browser.find_element_by_id('button_valid_form')
         button.click()
-        time.sleep(2)
+        time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost10")
         time.sleep(2)
         self.browser.quit()
@@ -91,7 +90,7 @@ class UrlPurbeurreTests(TestCase):
         grid.click()
         button = self.browser.find_element_by_id('button_valid_form')
         button.click()
-        time.sleep(2)
+        time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost10")
 
         self.browser.get('http://127.0.0.1:8000/purbeurre/index.html')
@@ -119,7 +118,7 @@ class UrlPurbeurreTests(TestCase):
         grid.click()
         button = self.browser.find_element_by_id('button_valid_form')
         button.click()
-        time.sleep(2)
+        time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost10")
 
         self.browser.get(
@@ -132,7 +131,7 @@ class UrlPurbeurreTests(TestCase):
 
     def make_account(self):
         """This method make a account for testing the url form sign_in
-        """
+        """       
         info = {"inputUsername": "Frost10",
                 "inputemail": "anthony.thillerot@laposte.nett",
                 "inputPassword1": "azerty",
