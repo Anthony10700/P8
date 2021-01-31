@@ -135,8 +135,8 @@ class UrlPurbeurreTests(TestCase):
         """
         info = {"inputUsername": "Frost10",
                 "inputemail": "anthony.thillerot@laposte.nett",
-                "inputPassword1": "Test_psw",
-                "inputPassword2": "Test_psw",
+                "inputPassword1": "azerty",
+                "inputPassword2": "azerty",
                 "inputNom": "Test_Nom",
                 "inputprenom": "Test_prenom"}
         response = self.client.post('/auth/sign_in.html', data=info)
