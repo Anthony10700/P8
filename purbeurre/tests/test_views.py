@@ -26,6 +26,7 @@ class UrlPurbeurreTests(TestCase):
         self.browser = webdriver.Firefox(options=firefox_options)
         self.browser.implicitly_wait(30)
         self.browser.maximize_window()
+        
 
     def test_index(self):
         """
@@ -60,6 +61,7 @@ class UrlPurbeurreTests(TestCase):
     def test_connection_selenium(self):
         """test connection with selenium
         """
+        self.make_account()
         self.browser.get('http://127.0.0.1:8000/auth/sign_in.html')
         inputusername = self.browser.find_element_by_id('inputEmail_connect')
         inputusername.send_keys('anthony.thillerot@laposte.nett')
@@ -78,6 +80,7 @@ class UrlPurbeurreTests(TestCase):
     def test_seek_search_connection_selenium(self):
         """test searh connection with selenium
         """
+        self.make_account()
         self.browser.get('http://127.0.0.1:8000/auth/sign_in.html')
         inputusername = self.browser.find_element_by_id('inputEmail_connect')
         inputusername.send_keys('anthony.thillerot@laposte.nett')
@@ -105,6 +108,7 @@ class UrlPurbeurreTests(TestCase):
     def test_show_product_selenium(self):
         """test show_product with selenium
         """
+        self.make_account()
         self.browser.get('http://127.0.0.1:8000/auth/sign_in.html')
         inputusername = self.browser.find_element_by_id('inputEmail_connect')
         inputusername.send_keys('anthony.thillerot@laposte.nett')
@@ -125,3 +129,20 @@ class UrlPurbeurreTests(TestCase):
         self.assertEqual(elem.text, "Repères nutritionnels pour 100g :")
         time.sleep(2)
         self.browser.quit()
+
+    def make_account(self):
+        """This method make a account for testing the url form sign_in
+        """
+        info = {"inputUsername": "Frost10",
+                "inputemail": "anthony.thillerot@laposte.nett",
+                "inputPassword1": "Test_psw",
+                "inputPassword2": "Test_psw",
+                "inputNom": "Test_Nom",
+                "inputprenom": "Test_prenom"}
+        response = self.client.post('/auth/sign_in.html', data=info)
+        self.assertEqual(response.status_code, 302)
+
+        response = self.client.get('/auth/account.html')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.context['account_info']["Email"], info["inputemail"])
