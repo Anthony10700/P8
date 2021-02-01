@@ -10,7 +10,7 @@ branches:
     - master
 
 addons:
-  firefox: latest
+  firefox: "60.0"
 
 env:
   global:

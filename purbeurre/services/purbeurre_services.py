@@ -4,9 +4,13 @@
         [type]: [description]
     """
 import json
+import logging
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.exceptions import ObjectDoesNotExist
 from purbeurre.models import Product
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 
 def save_product_result(user, request):
@@ -58,6 +62,8 @@ def get_articles(request, nb_of_articles_per_page):
         result_dict = {"methode": "", "value": ""}
         recherche = Product.objects.filter(
             name__icontains=request.GET["search"])
+
+        logger.info('New search', exc_info=True, extra={'request': request, })
 
         if 'page' in request.GET:
             page = int(request.GET['page'])
