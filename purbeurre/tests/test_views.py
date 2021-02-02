@@ -6,15 +6,12 @@ from django.test import TestCase, Client
 # Create your tests here.
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from pyvirtualdisplay import Display 
-display = Display(visible=0, size=(1024, 768)) 
-display.start() 
+# from pyvirtualdisplay import Display 
+# display = Display(visible=0, size=(1024, 768)) 
+# display.start() 
 
 firefox_options = webdriver.FirefoxOptions()
-
-
 firefox_options.headless = True
-
 
 class UrlPurbeurreTests(TestCase):
     """
@@ -28,8 +25,8 @@ class UrlPurbeurreTests(TestCase):
         """
         # Every test needs a client.
         self.client = Client()
-        self.browser = webdriver.Firefox(options=firefox_options)
 
+        self.browser = webdriver.Firefox(options=firefox_options)
         
     def test_index(self):
         """
@@ -71,10 +68,10 @@ class UrlPurbeurreTests(TestCase):
         inputpassword = self.browser.find_element_by_id(
             'inputPassword_connect')
         inputpassword.send_keys('azerty')
-        grid = self.browser.find_element_by_id('gridCheck_connect')
-        grid.click()
+        # grid = self.browser.find_element_by_id('gridCheck_connect')
+        self.browser.execute_script("document.getElementById('gridCheck_connect').checked = true;")
         button = self.browser.find_element_by_id('button_valid_form')
-        button.click()
+        button.submit()
         time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost10")
         time.sleep(2)
@@ -120,6 +117,7 @@ class UrlPurbeurreTests(TestCase):
         inputpassword.send_keys('azerty')
         grid = self.browser.find_element_by_id('gridCheck_connect')
         grid.click()
+
         button = self.browser.find_element_by_id('button_valid_form')
         button.click()
         time.sleep(5)

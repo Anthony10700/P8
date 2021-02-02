@@ -3487,3 +3487,111 @@ JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jqu
 JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
 JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
 1612109467947	Marionette	INFO	Stopped listening on port 59641
+1612275077467	geckodriver	INFO	Listening on 127.0.0.1:55848
+1612275080483	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofilemzIQcy"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612275082574	Marionette	INFO	Listening on port 55860
+1612275082627	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1612275084232	geckodriver	INFO	Listening on 127.0.0.1:55918
+1612275087242	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofilelnh0gR"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612275088639	Marionette	INFO	Listening on port 55942
+1612275088777	Marionette	WARN	TLS certificate errors will be ignored for this session
+1612275090841	Marionette	INFO	Stopped listening on port 55942
+1612275091312	geckodriver	INFO	Listening on 127.0.0.1:55977
+1612275094323	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofileJPY2hq"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612275095677	Marionette	INFO	Listening on port 55987
+1612275095859	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1612275098634	Marionette	INFO	Stopped listening on port 55987
+1612275099227	geckodriver	INFO	Listening on 127.0.0.1:56048
+1612275102239	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofilewHzJXo"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612275103586	Marionette	INFO	Listening on port 56061
+1612275103771	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1612275115173	Marionette	INFO	Stopped listening on port 56061
+1612275115729	geckodriver	INFO	Listening on 127.0.0.1:56155
+1612275118741	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofilel5l4xZ"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612275120113	Marionette	INFO	Listening on port 56163
+1612275120276	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1612275125135	Marionette	INFO	Stopped listening on port 56163
+1612275125762	geckodriver	INFO	Listening on 127.0.0.1:56240
+1612275128772	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofileAXwNnf"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612275130216	Marionette	INFO	Listening on port 56249
+1612275130316	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1612275139967	Marionette	INFO	Stopped listening on port 56249
+1612275967189	geckodriver	INFO	Listening on 127.0.0.1:57225
+1612275970217	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofileqpMYwO"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612275971584	Marionette	INFO	Listening on port 57238
+1612275971752	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1612275980240	Marionette	INFO	Stopped listening on port 57238
+1612275980871	geckodriver	INFO	Listening on 127.0.0.1:57413
+1612275983894	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofileF2mJ20"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612275985356	Marionette	INFO	Listening on port 57422
+1612275985431	Marionette	WARN	TLS certificate errors will be ignored for this session
+1612275987503	Marionette	INFO	Stopped listening on port 57422
+1612275987974	geckodriver	INFO	Listening on 127.0.0.1:57453
+1612275990987	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofilefXHGRj"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612275992478	Marionette	INFO	Listening on port 57463
+1612275992526	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1612275995342	Marionette	INFO	Stopped listening on port 57463
+1612275995950	geckodriver	INFO	Listening on 127.0.0.1:57521
+1612275998960	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofile5pxp8H"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612276000320	Marionette	INFO	Listening on port 57529
+1612276000493	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1612276011751	Marionette	INFO	Stopped listening on port 57529
+1612276012280	geckodriver	INFO	Listening on 127.0.0.1:57610
+1612276015292	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofile76fLJa"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612276016649	Marionette	INFO	Listening on port 57620
+1612276016831	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1612276021631	Marionette	INFO	Stopped listening on port 57620
+1612276022170	geckodriver	INFO	Listening on 127.0.0.1:57693
+1612276025182	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofile4sw7HZ"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612276026555	Marionette	INFO	Listening on port 57703
+1612276026718	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+JavaScript error: https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js, line 1: TypeError: $.easing is undefined
+1612276036199	Marionette	INFO	Stopped listening on port 57703
