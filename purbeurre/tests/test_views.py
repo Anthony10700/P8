@@ -71,7 +71,7 @@ class UrlPurbeurreTests(TestCase):
         # grid = self.browser.find_element_by_id('gridCheck_connect')
         self.browser.execute_script("document.getElementById('gridCheck_connect').checked = true;")
         # button = self.browser.find_element_by_id('button_valid_form')
-        self.browser.execute_script("document.getElementById('button_valid_form').click();")
+        self.browser.execute_script("document.getElementById('button_valid_form').click;")
         time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost10")
         time.sleep(2)
