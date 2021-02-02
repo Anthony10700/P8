@@ -6,13 +6,13 @@ from django.test import TestCase, Client
 # Create your tests here.
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from pyvirtualdisplay import Display 
+display = Display(visible=0, size=(1024, 768)) 
+display.start() 
 
 firefox_options = webdriver.FirefoxOptions()
 
-firefox_options.add_argument('--headless')
-firefox_options.add_argument('--no-sandbox')
-firefox_options.add_argument('--disable-dev-shm-usage')
-firefox_options.add_argument('--window-size=1920,1080')
+
 firefox_options.headless = True
 
 
@@ -29,8 +29,7 @@ class UrlPurbeurreTests(TestCase):
         # Every test needs a client.
         self.client = Client()
         self.browser = webdriver.Firefox(options=firefox_options)
-        self.browser.implicitly_wait(30)
-        self.browser.maximize_window()
+
         
     def test_index(self):
         """
@@ -73,9 +72,9 @@ class UrlPurbeurreTests(TestCase):
             'inputPassword_connect')
         inputpassword.send_keys('azerty')
         grid = self.browser.find_element_by_id('gridCheck_connect')
-        grid.click().click()
+        grid.click()
         button = self.browser.find_element_by_id('button_valid_form')
-        button.click().click()
+        button.click()
         time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost10")
         time.sleep(2)
@@ -92,9 +91,9 @@ class UrlPurbeurreTests(TestCase):
             'inputPassword_connect')
         inputpassword.send_keys('azerty')
         grid = self.browser.find_element_by_id('gridCheck_connect')
-        grid.click().click()
+        grid.click()
         button = self.browser.find_element_by_id('button_valid_form')
-        button.click().click()
+        button.click()
         time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost10")
 
@@ -120,9 +119,9 @@ class UrlPurbeurreTests(TestCase):
             'inputPassword_connect')
         inputpassword.send_keys('azerty')
         grid = self.browser.find_element_by_id('gridCheck_connect')
-        grid.click().click()
+        grid.click()
         button = self.browser.find_element_by_id('button_valid_form')
-        button.click().click()
+        button.click()
         time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost10")
 
