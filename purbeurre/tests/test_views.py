@@ -6,6 +6,7 @@ from django.test import TestCase, Client
 # Create your tests here.
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from purbeurre.models import Product, Categories
 # from pyvirtualdisplay import Display 
 # display = Display(visible=0, size=(1024, 768)) 
 # display.start() 
@@ -131,7 +132,7 @@ class UrlPurbeurreTests(TestCase):
         self.assertEqual(self.browser.title, "Resultats de votre recherche")
         element_art = self.browser.find_elements_by_xpath(
             "//div[@id='div_card_all']/div")
-        self.assertEqual(len(element_art), 6)
+        self.assertEqual(len(element_art), 1)
         time.sleep(2)
         self.browser.quit()
 
@@ -142,7 +143,7 @@ class UrlPurbeurreTests(TestCase):
         time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost101")
         self.browser.get(
-            'http://127.0.0.1:8000/purbeurre/show_product.html/?id=8954&search=boisson')  # noqa: E501
+            'http://127.0.0.1:8000/purbeurre/show_product.html/?id=1&search=boisson')  # noqa: E501
         elem = self.browser.find_element_by_class_name(
             'card_description').find_elements_by_tag_name("h5")[0]
         self.assertEqual(elem.text, "Repères nutritionnels pour 100g :")
