@@ -1,19 +1,45 @@
+dist: bionic
 language: python
-python:
-  - '3.5'
 
-# safelist
+python:
+  - '3.8'
+
 branches:
   only:
     - staging
+    - master
+
+addons:
+  firefox: "60.0"
+
+env:
+  global:
+    - DJANGO_SETTINGS_MODULE="nutella_platform.settings.travis"
+    - env="travis"
+
+before_install:
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver-v0.29.0-linux64.tar.gz -C geckodriver
+  - export PATH=$PATH:$PWD/geckodriver
+    
+install:
+  - pip install pipenv
+  - pipenv install --dev
 
 before_script:
+  - python -m pip install --upgrade pip
   - pip install -r requirements.txt
+  - install-webdrivers --path webdrivers
+  - psql -c 'create database nutella_platform;' -U postgres
+  - python manage.py migrate
+  - python manage.py import_product 2
+  - python manage.py runserver &
+
+
 
 services:
   - postgresql
 
-env: DJANGO_SETTINGS_MODULE=nutella_platform.settings.travis
-
 script:
-  - ./manage.py test
+  - python manage.py test
