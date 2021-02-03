@@ -134,7 +134,7 @@ class UrlPurbeurreTests(TestCase):
         self.assertEqual(self.browser.title, "Resultats de votre recherche")
         element_art = self.browser.find_elements_by_xpath(
             "//div[@id='div_card_all']/div")
-        self.assertEqual(len(element_art), 1)
+        self.assertEqual(len(element_art), 6)
         time.sleep(2)
         self.browser.quit()
 
@@ -147,6 +147,7 @@ class UrlPurbeurreTests(TestCase):
         self.assertEqual(self.browser.title, "Bienvenue Frost101")
         self.browser.get(
             'http://127.0.0.1:8000/purbeurre/show_product.html/?id=1&search=boisson')  # noqa: E501
+
         elem = self.browser.find_element_by_class_name(
             'card_description').find_elements_by_tag_name("h5")[0]
         self.assertEqual(elem.text, "Repères nutritionnels pour 100g :")
@@ -154,6 +155,7 @@ class UrlPurbeurreTests(TestCase):
         self.browser.quit()
 
     def make_produc(self):
+        print("\nCréation d'un produit\n")
         categories = Categories.objects.create(
             name="boissons-a-la-canneberge",
             url="https://fr.openfoodfacts.org/categorie/boissons-a-la-canneberge.json",  # noqa: E501

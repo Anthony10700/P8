@@ -33,6 +33,7 @@ before_script:
   - install-webdrivers --path webdrivers
   - psql -c 'create database nutella_platform;' -U postgres
   - python manage.py migrate
+  - python manage.py import_product 2
   - python manage.py runserver &
 
 
