@@ -58,8 +58,6 @@ class UrlPurbeurreTests(TestCase):
 
         browser.quit()
 
-        """this method create a object product
-        """
         categories = Categories.objects.create(
             name="boissons-a-la-canneberge",
             url="https://fr.openfoodfacts.org/categorie/boissons-a-la-canneberge.json",  # noqa: E501
@@ -194,7 +192,6 @@ class UrlPurbeurreTests(TestCase):
     def test_show_product_selenium(self):
         """test show_product with selenium
         """
-        Product.object.get
         self.connect()
         time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost101")
