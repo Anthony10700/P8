@@ -13,8 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+print(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -123,7 +123,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD:nutella_platform/settings/__init__.py
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+=======
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'nutella_platform/staticfiles')
+
+>>>>>>> 5697b8a1c9d6e957cb56449e5e37f3028d4bf607:settings/__init__.py
 INTERNAL_IP = ['127.0.0.1']
 
 DATABASES = {

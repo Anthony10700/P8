@@ -6,4 +6,6 @@ __pycache__
 .cache/
 .vscode
 /.vscode/
-/settings/production.py
+/nutella_platform/settings/production.py
+geckodriver.log
+geckodriver.log

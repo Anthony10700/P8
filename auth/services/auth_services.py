@@ -58,7 +58,11 @@ def connect_validation(request):
         user_get = get_user_model()
         try:
             user_tmp = user_get.objects.get(email=email)
+<<<<<<< HEAD
         except :
+=======
+        except user_get.DoesNotExist:
+>>>>>>> 5697b8a1c9d6e957cb56449e5e37f3028d4bf607
             user_tmp = None
         if user_tmp is not None:
             user = authenticate(request,
