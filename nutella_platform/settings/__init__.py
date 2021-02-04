@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 print(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +26,7 @@ SECRET_KEY = 'u4@@a^-+vostdl)3dglw$ceb97*m08rc+m+wqmc%-@g+-2f&dr'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['174.138.54.208']
+ALLOWED_HOSTS = ['174.138.54.208', '127.0.0.1']
 
 DEBUG = True
 
