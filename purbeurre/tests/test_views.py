@@ -8,9 +8,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from purbeurre.models import Product, Categories
 import json
-# from pyvirtualdisplay import Display 
-# display = Display(visible=0, size=(1024, 768)) 
-# display.start() 
 
 firefox_options = webdriver.FirefoxOptions()
 firefox_options.headless = True
@@ -26,7 +23,7 @@ class UrlPurbeurreTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         """This method make a account for testing the url form sign_in
-        """       
+        """
         browser = webdriver.Firefox(options=firefox_options)
         print("\nCreation d'un compte\n")
         info = {"inputUsername": "Frost101",
@@ -56,7 +53,7 @@ class UrlPurbeurreTests(TestCase):
         browser.execute_script(
             "document.getElementsByClassName('btn btn-primary')[1].click();")
 
-        browser.quit()        
+        browser.quit()
 
     def setUp(self):
         """This method similar at __init__ for each instance
@@ -65,7 +62,7 @@ class UrlPurbeurreTests(TestCase):
         self.client = Client()
 
         self.browser = webdriver.Firefox(options=firefox_options)
-        
+
     def test_index(self):
         """
         This method test the index url

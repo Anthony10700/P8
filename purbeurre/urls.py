@@ -5,7 +5,13 @@ from django.urls import path
 
 from . import views
 
+
 def trigger_error(request):
+    """Methode fgfor sentry test
+
+    Args:
+        request ([type]): [description]
+    """
     division_by_zero = 1 / 0
 
 
@@ -17,4 +23,3 @@ urlpatterns = [
     path('index.html', views.index, name="index"),
     path('sentry-debug/', trigger_error)
 ]
-

@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 print(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
@@ -29,10 +29,6 @@ SECRET_KEY = 'u4@@a^-+vostdl)3dglw$ceb97*m08rc+m+wqmc%-@g+-2f&dr'
 ALLOWED_HOSTS = ['174.138.54.208']
 
 DEBUG = True
-
-
-
-
 
 # Application definition
 
@@ -65,8 +61,10 @@ ROOT_URLCONF = 'nutella_platform.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'auth/templates',
-            "/home/anthony/P8/templates","/home/anthony/P8/auth/templates"],
+        'DIRS': [BASE_DIR / 'templates',
+                 BASE_DIR / 'auth/templates',
+                 "/home/anthony/P8/templates",
+                 "/home/anthony/P8/auth/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,13 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD:nutella_platform/settings/__init__.py
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-=======
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'nutella_platform/staticfiles')
-
->>>>>>> 5697b8a1c9d6e957cb56449e5e37f3028d4bf607:settings/__init__.py
 INTERNAL_IP = ['127.0.0.1']
 
 DATABASES = {
@@ -149,7 +141,4 @@ DATABASES = {
         }
 }
 
-STATICFILES_DIRS =[]
-
-
-
+STATICFILES_DIRS = []
