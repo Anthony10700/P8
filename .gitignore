@@ -8,4 +8,4 @@ __pycache__
 /.vscode/
 /nutella_platform/settings/production.py
 geckodriver.log
-geckodriver.log
+.production.py.swo
