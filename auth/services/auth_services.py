@@ -56,9 +56,15 @@ def connect_validation(request):
                                  salt="1",
                                  hasher='pbkdf2_sha256')
         user_get = get_user_model()
-        user_get = user_get.objects.get(email=email)
-        user = authenticate(request,
-                            username=user_get.username, password=password)
+        try:
+            user_tmp = user_get.objects.get(email=email)
+        except :
+            user_tmp = None
+        if user_tmp is not None:
+            user = authenticate(request,
+                                username=user_tmp.username, password=password)
+        else:
+            user = None
         if user is not None:
             login(request, user)
             request.session.set_expiry(3600)

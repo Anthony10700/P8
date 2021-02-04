@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,13 +25,13 @@ SECRET_KEY = 'u4@@a^-+vostdl)3dglw$ceb97*m08rc+m+wqmc%-@g+-2f&dr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-<<<<<<< HEAD:nutella_platform/settings.py
-ALLOWED_HOSTS = ['174.138.54.208','127.0.0.1']
-=======
+
+ALLOWED_HOSTS = ['174.138.54.208']
+
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
->>>>>>> 66beb1e50579d4be3ed2929d70b3e0cde56d654a:settings/__init__.py
+
+
 
 
 # Application definition
@@ -57,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'nutella_platform.urls'
@@ -65,7 +65,8 @@ ROOT_URLCONF = 'nutella_platform.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'auth/templates'],
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'auth/templates',
+            "/home/anthony/P8/templates","/home/anthony/P8/auth/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,40 +126,24 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 INTERNAL_IP = ['127.0.0.1']
 
-<<<<<<< HEAD:nutella_platform/settings.py
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 66beb1e50579d4be3ed2929d70b3e0cde56d654a:settings/__init__.py
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         # on utilise l'adaptateur postgresql
         'NAME': 'nutella_platform',
         # le nom de notre base de données créée précédemment
-<<<<<<< HEAD:nutella_platform/settings.py
+
         'USER': 'anthony',
-=======
-        'USER': 'postgres',
->>>>>>> 66beb1e50579d4be3ed2929d70b3e0cde56d654a:settings/__init__.py
+
+
         # attention : remplacez par votre nom d'utilisateur !!
         'PASSWORD': 'azerty',
         'HOST': '127.0.0.1',
         'PORT': '5432',
         }
 }
-STATICFILES_DIRS = []
-STATICFILES_DIRS = [
+
+STATICFILES_DIRS =[]
 
 
-]
+
