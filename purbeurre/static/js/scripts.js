@@ -62,7 +62,6 @@
 
     $("#img-dislike").click(function() {
         var value_tmp = $("#div_global_like_dislike").attr('value');
-        console.log(value_tmp)
         let cookie = document.cookie
         let csrfToken = cookie.substring(cookie.indexOf('=') + 1)
         $.ajax({
@@ -79,11 +78,14 @@
                 }
                 var div = document.getElementById('div_for_text_like_dislike');
                 div.innerHTML = text
-
+                var dislike = document.getElementById('td_for_dislike');
+                dislike.innerHTML = response.dislike
+                var like = document.getElementById('td_for_like');
+                like.innerHTML = response.like
             },
             error: function(error) {
-                var div = document.getElementById('div_for_text_like_dislike');
-                div.innerHTML = "Une erreur dans ajax désolé"
+                var dislike = document.getElementById('div_for_text_like_dislike');
+                dislike.innerHTML = "Une erreur dans ajax désolé"
             }
         });
     });
@@ -106,6 +108,10 @@
                 }
                 var div = document.getElementById('div_for_text_like_dislike');
                 div.innerHTML = text
+                var dislike = document.getElementById('td_for_dislike');
+                dislike.innerHTML = response.dislike
+                var like = document.getElementById('td_for_like');
+                like.innerHTML = response.like
 
             },
             error: function(error) {

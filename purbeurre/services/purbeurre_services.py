@@ -101,7 +101,7 @@ def show_specify_product(request):
         result_dict = {"methode": "", "value": ""}  # dictionnary return
         product_show = Product.objects.get(id=request.GET["id"])  # select a
         # product that matches to request id
-
+        product_save = Product.objects.get(id=request.GET["id"])
         product_show = replace_indent(product_show)
         # replace all short dash in the product_show.name
 
@@ -114,14 +114,17 @@ def show_specify_product(request):
             search = ""
         # check search in the request get ,
         # because the field must be returned to the user
-
+        like_value = len(product_save.like_products.all())
+        dislike_value = len(product_save.disklike_products.all())
         result_dict["methode"] = "render"
         # set method render in key methode
         result_dict["value"] = 'purbeurre/show_product.html'
         # set page resultats in key value
         result_dict["context"] = {'title': "resultats de votre recherche",
                                   'articles_list': product_show,
-                                  'aliment_search': search, "nutriments": prod}
+                                  'aliment_search': search, "nutriments": prod,
+                                  'like': like_value,
+                                  'dislike': dislike_value}
         # set context in key context for the views
 
         return result_dict  # returns dictionnary to views
@@ -225,4 +228,9 @@ def like_dislike_services(request):
     else:
         value_tmp = "err"
         return value_tmp
-    return "like dislake save"
+    like_value = len(product_select.like_products.all())
+    dislike_value = len(product_select.disklike_products.all())
+    context = {"text": "like dislake save",
+               "like": like_value,
+               "dislike": dislike_value}
+    return context
