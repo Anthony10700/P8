@@ -94,6 +94,8 @@ class UrlPurbeurreTests(TestCase):
         self.browser.quit()
 
     def connect(self):
+        """Methode to connect user in selenium
+        """
         self.browser.get('http://127.0.0.1:8000/auth/sign_in.html')
         inputusername = self.browser.find_element_by_id('inputEmail_connect')
         inputusername.send_keys('anthony.thillerot@laposte.nettt')
