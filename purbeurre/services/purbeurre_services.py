@@ -9,6 +9,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.exceptions import ObjectDoesNotExist
 from purbeurre.models import Product
 
+
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
@@ -194,3 +195,34 @@ def replace_indent(all_product_result):
         for arct in all_product_result:
             arct.categories.name = arct.categories.name.replace("-", " ")
         return all_product_result
+
+
+def like_dislike_services(request):
+    """methode for services like and dislike feature
+
+    Args:
+        request ([type]): [description]
+    """
+    value_tmp = ""
+    if "like" in request.GET:
+        value_tmp = request.GET["like"]
+        product_select = Product.objects.get(id=value_tmp)
+        try:
+            product_select.disklike_products.get(id=request.user.id)
+            product_select.disklike_products.remove(request.user)
+        except ObjectDoesNotExist:
+            pass
+        product_select.like_products.add(request.user)
+    elif "dislike" in request.GET:
+        value_tmp = request.GET["dislike"]
+        product_select = Product.objects.get(id=value_tmp)
+        try:
+            product_select.like_products.get(id=request.user.id)
+            product_select.like_products.remove(request.user)
+        except ObjectDoesNotExist:
+            pass
+        product_select.disklike_products.add(request.user)
+    else:
+        value_tmp = "err"
+        return value_tmp
+    return "like dislake save"

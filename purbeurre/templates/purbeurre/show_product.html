@@ -71,16 +71,16 @@
                         <!-- <p class="card-text">Nutriscore : {{article.nutriscore_grade.upper}}</p> -->
                         <p class="card-text">Categories: {{articles_list.categories.name}}</p>
 
-                        <div class="row justify-content-center" id="div_global_like_dislike">
+                        <div class="row justify-content-center" id="div_global_like_dislike" value="{{articles_list.id}}">
                             <div class="img_div_like" id="div_like">
-                                <img src="{% static '/img/like.png' %}" class="rounded-circle mr-3" width="50px" alt="" id="img-like" value="{{articles_list.id}}">
+                                <img src="{% static '/img/like.png' %}" class="rounded-circle mr-3" width="50px" alt="" id="img-like">
 
 
                             </div>
 
 
                             <div class="img_div_dislike" id="div_dislike">
-                                <img src="{% static '/img/dislike.png' %}" class="rounded-circle ml-3" width="50px" alt="" id="img-dislike" value="{{articles_list.id}}">
+                                <img src="{% static '/img/dislike.png' %}" class="rounded-circle ml-3" width="50px" alt="" id="img-dislike">
 
 
                             </div>

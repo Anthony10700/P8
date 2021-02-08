@@ -61,20 +61,15 @@
     });
 
     $("#img-dislike").click(function() {
-        var value_tmp = $("#img-dislike").val();
+        var value_tmp = $("#div_global_like_dislike").attr('value');
+        console.log(value_tmp)
         let cookie = document.cookie
         let csrfToken = cookie.substring(cookie.indexOf('=') + 1)
         $.ajax({
             /*ajax it's a function with send a http request to the server in the url @url*/
-            type: 'POST',
             url: "../like_dislike/",
-            contentType: "application/json; charset=utf-8",
             dataType: "json",
-            headers: {
-                'X-CSRFToken': csrfToken
-            },
-            data: JSON.stringify({ "dislike": value_tmp }),
-
+            data: { "dislike": value_tmp },
             success: function(response) {
                 var text = ""
                 if ('text' in response) {
@@ -93,19 +88,14 @@
         });
     });
     $("#img-like").click(function() {
-        var value_tmp = $("#img-like").val();
+        var value_tmp = $("#div_global_like_dislike").attr('value');
         let cookie = document.cookie
         let csrfToken = cookie.substring(cookie.indexOf('=') + 1)
         $.ajax({
             /*ajax it's a function with send a http request to the server in the url @url*/
-            type: 'POST',
             url: "../like_dislike/",
-            contentType: "application/json; charset=utf-8",
             dataType: "json",
-            headers: {
-                'X-CSRFToken': csrfToken
-            },
-            data: JSON.stringify({ "like": value_tmp }),
+            data: { "like": value_tmp },
 
             success: function(response) {
                 var text = ""
