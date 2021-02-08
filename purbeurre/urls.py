@@ -21,5 +21,6 @@ urlpatterns = [
     path('unsave.html', views.unsave, name="unsave"),
     path('legal_notice.html', views.legale, name="legal_notice"),
     path('index.html', views.index, name="index"),
-    path('sentry-debug/', trigger_error)
+    path('sentry-debug/', trigger_error),
+    path('like_dislike/', views.like_dislike, name="like_dislike")
 ]

@@ -53,3 +53,7 @@ class Product(models.Model):
         settings.AUTH_USER_MODEL,
         related_name="save_product",
         name="save_product")
+    like_disklike_products = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="like_disklike_products",
+        name="like_disklike_products")

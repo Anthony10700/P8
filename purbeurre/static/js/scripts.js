@@ -60,4 +60,69 @@
         }
     });
 
+    $("#img-dislike").click(function() {
+        var value_tmp = $("#img-dislike").val();
+        let cookie = document.cookie
+        let csrfToken = cookie.substring(cookie.indexOf('=') + 1)
+        $.ajax({
+            /*ajax it's a function with send a http request to the server in the url @url*/
+            type: 'POST',
+            url: "../like_dislike/",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            data: JSON.stringify({ "dislike": value_tmp }),
+
+            success: function(response) {
+                var text = ""
+                if ('text' in response) {
+                    text = response.text + " dislike"
+                } else {
+                    text = response.err
+                }
+                var div = document.getElementById('div_for_text_like_dislike');
+                div.innerHTML = text
+
+            },
+            error: function(error) {
+                var div = document.getElementById('div_for_text_like_dislike');
+                div.innerHTML = "Une erreur dans ajax désolé"
+            }
+        });
+    });
+    $("#img-like").click(function() {
+        var value_tmp = $("#img-like").val();
+        let cookie = document.cookie
+        let csrfToken = cookie.substring(cookie.indexOf('=') + 1)
+        $.ajax({
+            /*ajax it's a function with send a http request to the server in the url @url*/
+            type: 'POST',
+            url: "../like_dislike/",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            data: JSON.stringify({ "like": value_tmp }),
+
+            success: function(response) {
+                var text = ""
+                if ('text' in response) {
+                    text = response.text + " like"
+                } else {
+                    text = response.err
+                }
+                var div = document.getElementById('div_for_text_like_dislike');
+                div.innerHTML = text
+
+            },
+            error: function(error) {
+                var div = document.getElementById('div_for_text_like_dislike');
+                div.innerHTML = "Une erreur dans ajax désolé"
+            }
+        });
+    });
+
 })(jQuery); // End of use strict

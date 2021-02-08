@@ -70,6 +70,27 @@
                         <h5 class="card-title">{{articles_list.name}}</h5>
                         <!-- <p class="card-text">Nutriscore : {{article.nutriscore_grade.upper}}</p> -->
                         <p class="card-text">Categories: {{articles_list.categories.name}}</p>
+
+                        <div class="row justify-content-center" id="div_global_like_dislike">
+                            <div class="img_div_like" id="div_like">
+                                <img src="{% static '/img/like.png' %}" class="rounded-circle mr-3" width="50px" alt="" id="img-like" value="{{articles_list.id}}">
+
+
+                            </div>
+
+
+                            <div class="img_div_dislike" id="div_dislike">
+                                <img src="{% static '/img/dislike.png' %}" class="rounded-circle ml-3" width="50px" alt="" id="img-dislike" value="{{articles_list.id}}">
+
+
+                            </div>
+
+
+                        </div>
+                        <div id="div_for_text_like_dislike">
+
+                        </div>
+
                         <form action="{% url 'resultat' %}" method="post" class="button_card_art">
                             {% csrf_token %}
                             <input type="hidden" name="search" value="{{ aliment_search }}">
