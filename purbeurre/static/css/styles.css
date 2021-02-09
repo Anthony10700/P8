@@ -10388,13 +10388,16 @@ header.masthead h1 {
 }
 
 .card_result {
-    max-height: 35rem;
-    min-height: 30rem;
+    max-height: 80%;
     margin-left: 30px;
     margin-bottom: 30px;
     background-color: rgba(66, 66, 66, 0.356);
     padding-left: 0px;
     padding-right: 0px;
+}
+
+.card_result a {
+    height: 50%;
 }
 
 #img-like:hover {
@@ -10408,17 +10411,16 @@ header.masthead h1 {
 }
 
 .img_div_result img {
-    margin-top: -30px;
+    margin-top: -10px;
+    height: 80%;
     width: auto;
-    height: auto;
-    max-height: 100%;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
-    max-width: 40%;
 }
 
 .img_div_result {
-    height: 90%;
+    height: 100%;
 }
 
 .card-body.card-body-article {
@@ -10448,13 +10450,7 @@ header.masthead h1 {
     height: 60%;
 }
 
-.card a {
-    height: 100%;
-    width: 100%;
-}
-
 .button_card_art {
-    position: absolute;
     bottom: 5px;
     left: 0%;
     right: 0%;

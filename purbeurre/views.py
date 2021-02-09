@@ -255,5 +255,8 @@ def like_dislike(request):
             context = {'err': "Error no POST request"}
             return HttpResponse(json.dumps(context))
     else:
-        context = {'err': "Vous n'êtes pas connecté."}
+        context = {
+            'err': "Vous n'êtes pas connecté.",
+            "like": 0,
+            "dislike": 0}
         return HttpResponse(json.dumps(context))
