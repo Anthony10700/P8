@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from purbeurre.models import Categories, Product
 from purbeurre.services.purbeurre_services import save_product_result,\
     get_articles, show_specify_product,\
-    remove_product, replace_indent, get_page
+    remove_product, replace_indent, get_page, like_dislike_services
 # Create your tests here.
 from purbeurre.templatetags.utils import get_item
 
@@ -141,12 +141,16 @@ class TestMyServicesPurbeurre(TransactionTestCase):
         result = show_specify_product(request)
         prod = json.loads(product_show.nutriments)
         search = ""
+        like_value = len(product_show.like_products.all())
+        dislike_value = len(product_show.disklike_products.all())
         result_dict = {
             "methode": "render", "value": 'purbeurre/show_product.html',
             "context": {'title': "resultats de votre recherche",
                         'articles_list': product_show,
                         'aliment_search': search,
-                        "nutriments": prod}}
+                        "nutriments": prod,
+                        'like': like_value,
+                        'dislike': dislike_value}}
         self.assertEqual(result, result_dict)
 
     def test_remove_product(self):
@@ -189,3 +193,18 @@ class TestMyServicesPurbeurre(TransactionTestCase):
 
         self.assertEqual(recherche[0].name, "Cranberry")
         self.assertEqual(paginate, False)
+
+    def test_like_dislike_services(self):
+        """methode for test services like_dislike_services
+        """
+        user = get_user_model()
+        info = {"dislike": "1"}
+        request = self.factory.get('like_dislike/', data=info)
+        request.session = self.client.session
+        request.user = user.objects.get(username="Test_accound2")
+        result = like_dislike_services(request)
+        context = {
+            "text": "like dislake save",
+            "like": 0,
+            "dislike": 1}
+        self.assertEqual(context, result)

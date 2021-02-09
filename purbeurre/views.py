@@ -241,22 +241,30 @@ def like_dislike(request):
 
     Args:
         request ([type]): [description]
-    """    
+    """
     if request.user.is_authenticated:
         if request.method == "GET":
             context = like_dislike_services(request)
             if context["text"] == "like dislake save":
                 context["text"] = "Produit ajouté au "
-                return HttpResponse(json.dumps(context))
+                return HttpResponse(
+                    json.dumps(context),
+                    content_type="application/json")
             elif context["text"] == "err":
                 context["text"] = "Error in services"
-                return HttpResponse(json.dumps(context))
+                return HttpResponse(
+                    json.dumps(context),
+                    content_type="application/json")
         else:
             context = {'err': "Error no POST request"}
-            return HttpResponse(json.dumps(context))
+            return HttpResponse(
+                json.dumps(context),
+                content_type="application/json")
     else:
         context = {
             'err': "Vous n'êtes pas connecté.",
             "like": 0,
             "dislike": 0}
-        return HttpResponse(json.dumps(context))
+        return HttpResponse(
+            json.dumps(context),
+            content_type="application/json")

@@ -228,6 +228,7 @@ def like_dislike_services(request):
     else:
         value_tmp = "err"
         return value_tmp
+
     like_value = len(product_select.like_products.all())
     dislike_value = len(product_select.disklike_products.all())
     context = {"text": "like dislake save",
