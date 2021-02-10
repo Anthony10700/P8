@@ -73,6 +73,17 @@ class UrlPurbeurreTests(TestCase):
         time.sleep(2)
         self.browser.quit()
 
+    def test_like_dislike_offline(self):
+        """
+        This method test the like_dislik with no connection user url
+        """
+        response = self.client.get(
+            'http://127.0.0.1:8000/purbeurre/like_dislike/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['err'], "Vous n'êtes pas connecté.")
+        time.sleep(2)
+        self.browser.quit()
+
     def test_index_selenium(self):
         """
         test index with selenium
@@ -122,7 +133,7 @@ class UrlPurbeurreTests(TestCase):
         """test searh connection with selenium
         """
         self.connect()
-        self.make_produc()
+        self.make_product()
         time.sleep(2)
         self.assertEqual(self.browser.title, "Bienvenue Frost101")
 
@@ -140,12 +151,19 @@ class UrlPurbeurreTests(TestCase):
     def test_show_product_selenium(self):
         """test show_product with selenium
         """
-        self.make_produc()
+        self.make_product()
         self.connect()
         time.sleep(5)
         self.assertEqual(self.browser.title, "Bienvenue Frost101")
+
+        self.browser.get('http://127.0.0.1:8000/purbeurre/index.html')
+        elem = self.browser.find_element_by_id('search-nav')
+        elem.send_keys('boisson' + Keys.RETURN)
+        time.sleep(2)
+        id_product = self.browser.find_element_by_id('button_id')
         self.browser.get(
-            'http://127.0.0.1:8000/purbeurre/show_product.html/?id=1&search=boisson')  # noqa: E501
+            'http://127.0.0.1:8000/purbeurre/show_product.html/?id=' + str(
+                id_product.get_attribute("value")) + '&search=boisson')  # noqa: E501
 
         elem = self.browser.find_element_by_class_name(
             'card_description').find_elements_by_tag_name("h5")[0]
@@ -153,11 +171,13 @@ class UrlPurbeurreTests(TestCase):
         time.sleep(2)
         self.browser.quit()
 
-    def make_produc(self):
-        print("\nCréation d'un produit\n")
+    def make_product(self):
+        """Methode for creation product
+        """
         categories = Categories.objects.create(
             name="boissons-a-la-canneberge",
-            url="https://fr.openfoodfacts.org/categorie/boissons-a-la-canneberge.json",  # noqa: E501
+            url="https://fr.openfoodfacts.org/categorie/" +
+            "boissons-a-la-canneberge.json",
             nb_of_products=int(54))
 
         categories.save()

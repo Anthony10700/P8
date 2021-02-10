@@ -47,15 +47,11 @@
 
 
 
-
-
-
-
             <div class="row justify-content-center mt-5 col-12">
 
 
-                <div class="card col-lg-3 col-md-10 col-12 card_result">
-                    <a href="{% url 'show_product' %}?id={{articles_list.id}}" style="height:50%;">
+                <div class="card col-xl-4 col-md-10 col-12 card_result">
+                    <a href="{% url 'show_product' %}?id={{articles_list.id}}">
                         <div class="img_nutri_result">
                             <img src="{% static '/img/' %}{{articles_list.nutriscore_grade}}.svg" alt="">
 
@@ -70,18 +66,36 @@
                         <h5 class="card-title">{{articles_list.name}}</h5>
                         <!-- <p class="card-text">Nutriscore : {{article.nutriscore_grade.upper}}</p> -->
                         <p class="card-text">Categories: {{articles_list.categories.name}}</p>
-                        <form action="{% url 'resultat' %}" method="post" class="button_card_art">
-                            {% csrf_token %}
-                            <input type="hidden" name="search" value="{{ aliment_search }}">
-                            <button type="submit" class="btn btn-primary" name="id" value="{{articles_list.id}}"><i
-                                    class="fa fa-floppy-o"> Sauvegarder</i></button>
 
-                        </form>
+                        <div class="row justify-content-center" id="div_global_like_dislike" value="{{articles_list.id}}">
+                            <div class="img_div_like" id="div_like">
+                                <img src="{% static '/img/like.png' %}" class="rounded-circle mr-3" width="50px" alt="" id="img-like">
+                            </div>
+                            <div class="img_div_dislike" id="div_dislike">
+                                <img src="{% static '/img/dislike.png' %}" class="rounded-circle ml-3" width="50px" alt="" id="img-dislike">
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 mt-1" id="div_for_text_like_dislike">
+
+                        </div>
+                        <div class="col-12 mt-1 mb-1">
+                            <form action="{% url 'resultat' %}" method="post" class="button_card_art">
+                                {% csrf_token %}
+                                <input type="hidden" name="search" value="{{ aliment_search }}">
+                                <button type="submit" class="btn btn-primary" name="id" value="{{articles_list.id}}"><i
+                                        class="fa fa-floppy-o"> Sauvegarder</i></button>
+
+                            </form>
+
+                        </div>
+
                     </div>
                 </div>
 
 
-                <div class="card col-lg-8 col-md-10 col-12 card_description">
+                <div class="card col-xl-7 col-md-10 col-12 card_description">
                     <div class="card-body card-body-article">
                         <h4 class="card-title">Informations concernant : {{articles_list.name}}</h4>
 
@@ -151,6 +165,16 @@
                                     <tr>
                                         <th scope="row">Score nutritionnel - France</th>
                                         <td> {{ nutriments|get_item:"nutrition-score-fr_100g" }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nombre de like</th>
+                                        <td id="td_for_like"> {{ like }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nombre de dislike</th>
+                                        <td id="td_for_dislike"> {{ dislike }}</td>
 
                                     </tr>
                                 </tbody>

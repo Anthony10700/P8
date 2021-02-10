@@ -2,7 +2,7 @@
 
 <div class="row sign_back pb-5">
 
-    <div class="container col-8">
+    <div class="container col-10">
 
         <div class="row justify-content-center col-12">
             <div class="col-12 text-center">
@@ -46,7 +46,7 @@
             <div class="row justify-content-center mt-5 col-12" id="div_card_all">
                 {% for article in articles_list %}
 
-                <div class="card col-lg-4 col-12 card_result">
+                <div class="card col-xl-3 col-lg-5 col-8 card_result">
                     <a href="{% url 'show_product' %}?id={{article.id}}&search={{ aliment_search }}" style="height:50%;">
                         <div class="img_nutri_result">
                             <img src="{% static '/img/' %}{{article.nutriscore_grade}}.svg" alt="">
@@ -64,7 +64,7 @@
                             {% csrf_token %}
                             <input type="hidden" name="search" value="{{ aliment_search }}">
 
-                            <button type="submit" class="btn btn-primary " name="id" value="{{article.id}}"><i
+                            <button type="submit" class="btn btn-primary " name="id" value="{{article.id}}" id="button_id"><i
                                     class="fa fa-floppy-o"> Sauvegarder</i></button>
 
                         </form>

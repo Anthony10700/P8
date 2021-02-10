@@ -15,7 +15,9 @@ from django.template.defaulttags import register
 from django.core.exceptions import ObjectDoesNotExist
 from purbeurre.services.purbeurre_services import save_product_result,\
     get_articles, show_specify_product,\
-    get_page, remove_product, replace_indent
+    get_page, remove_product, replace_indent, like_dislike_services
+import json
+from django.http import HttpResponse
 
 
 @register.filter
@@ -232,3 +234,37 @@ def page_server_error(request, exception=None):
     """
 
     return render(request, '500.html')
+
+
+def like_dislike(request):
+    """View for add a like or dislike product
+
+    Args:
+        request ([type]): [description]
+    """
+    if request.user.is_authenticated:
+        if request.method == "GET":
+            context = like_dislike_services(request)
+            if context["text"] == "like dislake save":
+                context["text"] = "Produit ajouté au "
+                return HttpResponse(
+                    json.dumps(context),
+                    content_type="application/json")
+            elif context["text"] == "err":
+                context["text"] = "Error in services"
+                return HttpResponse(
+                    json.dumps(context),
+                    content_type="application/json")
+        else:
+            context = {'err': "Error no POST request"}
+            return HttpResponse(
+                json.dumps(context),
+                content_type="application/json")
+    else:
+        context = {
+            'err': "Vous n'êtes pas connecté.",
+            "like": 0,
+            "dislike": 0}
+        return HttpResponse(
+            json.dumps(context),
+            content_type="application/json")
