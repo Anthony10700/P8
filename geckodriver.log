@@ -5027,8 +5027,10 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
 1612883097955	Marionette	INFO	Listening on port 58152
 1612883098129	Marionette	WARN	TLS certificate errors will be ignored for this session
-1612883098194	geckodriver	INFO	Listening on 127.0.0.1:58170
-1612883101205	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofile9RYWTZ"
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 16072, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:166
+1612905458269	Marionette	INFO	Stopped listening on port 58152
+mp\\rust_mozprofile9RYWTZ"
 *** You are running in headless mode.
 console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
 1612883102631	Marionette	INFO	Listening on port 58200
@@ -5048,11 +5050,13 @@ JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: 
 console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
 1612883124933	Marionette	INFO	Listening on port 58400
 1612883125401	Marionette	WARN	TLS certificate errors will be ignored for this session
-1612883256443	geckodriver	INFO	Listening on 127.0.0.1:58650
-1612883259462	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofileqs6VJO"
-Can't find symbol 'eglSwapBuffersWithDamageEXT'.
-Can't find symbol 'eglSetDamageRegionKHR'.
-console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x3A0147,name=PContent::Msg_AsyncMessage) Channel error: cannot send/recv
+
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 11456, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:166
+1612905455676	Marionette	INFO	Stopped listening on port 58400
+chSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
 1612883261594	Marionette	INFO	Listening on port 58659
 1612883262108	Marionette	WARN	TLS certificate errors will be ignored for this session
 1612883264343	Marionette	INFO	Stopped listening on port 58659
@@ -5785,7 +5789,8 @@ JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: 
 console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
 1612884695398	Marionette	INFO	Listening on port 65147
 1612884695547	Marionette	WARN	TLS certificate errors will be ignored for this session
-1612885067720	geckodriver	INFO	Listening on 127.0.0.1:49408
+Exiting due to channel error.
+Listening on 127.0.0.1:49408
 1612885070735	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\antho\\AppData\\Local\\Temp\\rust_mozprofile5rznkn"
 Can't find symbol 'eglSwapBuffersWithDamageEXT'.
 Can't find symbol 'eglSetDamageRegionKHR'.
