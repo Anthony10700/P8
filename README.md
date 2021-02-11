@@ -1,6 +1,7 @@
 ## About Project 8
 - This deposit concerns the project number 8 of openclassrooms that you can find below the instruction for the installation and the necessary information
 - URL HEROKU https://purbeurre-at.herokuapp.com/purbeurre/index.html
+- Ocean Digital http://174.138.54.208/purbeurre/index.html
 
 ## For installation
 #### In your terminal : 
