@@ -98,13 +98,17 @@ class UrlPurbeurreTests(TestCase):
         """
         self.browser.get('http://127.0.0.1:8000/purbeurre/index.html')
         elem = self.browser.find_element_by_id('search-nav')
-        elem.send_keys('boisson')
+        elem.send_keys('boisson' + Keys.RETURN)
+        time.sleep(2)
 
         self.browser.execute_script(
             "document.getElementById('btn_for_filter').click();")
 
         self.browser.execute_script(
             "document.getElementById('nutriscore_e').click();")
+
+        self.browser.execute_script(
+            "document.getElementById('btn_nav_search').click();")
 
         element_art = self.browser.find_elements_by_xpath(
             "//div[@id='div_card_all']/div")
