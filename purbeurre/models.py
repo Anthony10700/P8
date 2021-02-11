@@ -61,3 +61,5 @@ class Product(models.Model):
         settings.AUTH_USER_MODEL,
         related_name="like_products",
         name="like_products")
+    like_count = models.IntegerField(null=True, default=0)
+    dislike_count = models.IntegerField(null=True, default=0)

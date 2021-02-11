@@ -124,7 +124,25 @@ class TestMyServicesPurbeurre(TransactionTestCase):
         request.user = user.objects.get(username="Test_accound2")
         rst = get_articles(request, 6)
         if "methode" in rst and "value" in rst \
-                and "paginate" in rst and "seek" in rst:
+                and "paginate" in rst and "seek" in rst \
+                    and "str_dict_return_param" in rst:
+            self.assertEqual(True, True)
+        else:
+            self.assertEqual(False, True)
+
+        info = {"search": "boissons", "like_limit_1": "on"}
+        request = self.factory.get('/purbeurre/resultats.html', data=info)
+        request.session = self.client.session
+        request.user = user.objects.get(username="Test_accound2")
+        rst = get_articles(request, 6)
+        if "methode" in rst and "value" in rst \
+                and "paginate" in rst and "seek" in rst \
+                    and "str_dict_return_param" in rst:
+            self.assertEqual(True, True)
+        else:
+            self.assertEqual(False, True)
+
+        if rst["str_dict_return_param"] == "search=boissons&like_limit_1=on":
             self.assertEqual(True, True)
         else:
             self.assertEqual(False, True)

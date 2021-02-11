@@ -69,20 +69,23 @@ def resultats(request):
                 context = {'title': "Products"}
                 return render(request, result_dict["value"],  context=context)
 
-        elif request.method == 'GET':
+        elif request.method == 'GET' and "search" in request.GET:
             result_dict = get_articles(request, 6)
             if result_dict["methode"] == "redirect":
                 messages.error(request, result_dict["message"])
                 return redirect(result_dict["value"])
             elif result_dict["methode"] == "render":
-                context = {'title': "Resultats de votre recherche",
-                           'articles_list': result_dict["seek"],
-                           'aliment_search': request.GET["search"],
-                           "paginate": result_dict["paginate"]}
+                context = {
+                    'title': "Resultats de votre recherche",
+                    'articles_list': result_dict["seek"],
+                    'aliment_search': request.GET["search"],
+                    "paginate": result_dict["paginate"],
+                    "str_dict_return_param": result_dict[
+                        "str_dict_return_param"]}
                 return render(request, result_dict["value"],  context=context)
 
     else:
-        if request.method == 'GET':
+        if request.method == 'GET' and "search" in request.GET:
             result_dict = get_articles(request, 6)
             if result_dict["methode"] == "redirect":
                 messages.error(request, result_dict["message"])
@@ -91,7 +94,9 @@ def resultats(request):
                 context = {'title': "Resultats de votre recherche",
                            'articles_list': result_dict["seek"],
                            'aliment_search': request.GET["search"],
-                           "paginate": result_dict["paginate"]}
+                           "paginate": result_dict["paginate"],
+                           "str_dict_return_param": result_dict[
+                               "str_dict_return_param"]}
                 return render(request, result_dict["value"],  context=context)
         else:
             context = {

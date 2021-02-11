@@ -10333,14 +10333,16 @@ header.masthead h1 {
     border: #E8A75D
 }
 
-.buttonsearch-nav {
+.buttonsearch-nav,
+#inlineFormCustomSelect {
     color: white;
     font-weight: bold;
     font-size: 17px;
     text-align: center;
     background-color: #E8A75D;
     border-width: 3px;
-    border: #E8A75D
+    border: #E8A75D;
+    font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .buttonsearch-nav:hover {
@@ -10484,4 +10486,19 @@ footer {
 
 #div_for_text_like_dislike {
     color: #E8A75D;
+}
+
+.label_for_filter {
+    margin-top: -25px;
+    margin-left: 10px;
+}
+
+#div_for_filter {
+    padding: 10px;
+    background-color: rgba(66, 66, 66, 0.658);
+    color: #E8A75D;
+}
+
+#div_for_filter input {
+    margin-left: 10px;
 }

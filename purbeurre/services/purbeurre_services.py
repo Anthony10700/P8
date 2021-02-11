@@ -46,6 +46,36 @@ def save_product_result(user, request):
         return result_dict  # returns dictionnary to views
 
 
+def get_result_in_list_nutriscore(request):
+    """This methodes get nutriscore form resulte et make a list
+
+    Args:
+        request ([type]): [description]
+    """
+    list_of_nutri = []
+
+    if "nutriscore_a" in request.GET:
+        if request.GET["nutriscore_a"] == "on":
+            list_of_nutri.append("a")
+
+    if "nutriscore_b" in request.GET:
+        if request.GET["nutriscore_b"] == "on":
+            list_of_nutri.append("b")
+
+    if "nutriscore_c" in request.GET:
+        if request.GET["nutriscore_c"] == "on":
+            list_of_nutri.append("c")
+
+    if "nutriscore_d" in request.GET:
+        if request.GET["nutriscore_d"] == "on":
+            list_of_nutri.append("d")
+
+    if "nutriscore_e" in request.GET:
+        if request.GET["nutriscore_e"] == "on":
+            list_of_nutri.append("e")
+    return list_of_nutri
+
+
 def get_articles(request, nb_of_articles_per_page):
     """
     This method get articles in bdd
@@ -61,8 +91,36 @@ def get_articles(request, nb_of_articles_per_page):
     """
     try:
         result_dict = {"methode": "", "value": ""}
+
+        str_dict_return_param = ""
+        for key in dict(request.GET):
+            if key != "page":
+                str_dict_return_param += key + "=" + request.GET[key] + "&"
+        str_dict_return_param = str_dict_return_param[:-1]
+        result_final_of_produts = []
         recherche = Product.objects.filter(
             name__icontains=request.GET["search"])
+
+        list_of_result_in_form = get_result_in_list_nutriscore(request)
+        if len(list_of_result_in_form) >= 1:
+            recherche = recherche.filter(
+                nutriscore_grade__in=list_of_result_in_form)
+
+        if "like_limit_1" in request.GET:
+            if request.GET["like_limit_1"] == "on":
+                for product_in in recherche:
+                    if product_in.like_count >= product_in.dislike_count:
+                        result_final_of_produts.append(product_in)
+
+        if "like_limit_2" in request.GET:
+            if request.GET["like_limit_2"] == "on":
+                for product_in in recherche:
+                    if product_in.like_count < product_in.dislike_count:
+                        result_final_of_produts.append(product_in)
+
+        if "like_limit_2" not in request.GET:
+            if "like_limit_1" not in request.GET:
+                result_final_of_produts = recherche
 
         logger.info('New search', exc_info=True, extra={'request': request, })
 
@@ -72,12 +130,16 @@ def get_articles(request, nb_of_articles_per_page):
                 page = 1
         else:
             page = 1
-        seek, paginate = get_page(page, recherche, nb_of_articles_per_page)
+        seek, paginate = get_page(
+            page,
+            result_final_of_produts,
+            nb_of_articles_per_page)
 
         result_dict["methode"] = "render"
         result_dict["value"] = "purbeurre/resultats.html"
         result_dict["paginate"] = paginate
         result_dict["seek"] = seek
+        result_dict["str_dict_return_param"] = str_dict_return_param
         return result_dict
 
     except ObjectDoesNotExist:
@@ -114,8 +176,9 @@ def show_specify_product(request):
             search = ""
         # check search in the request get ,
         # because the field must be returned to the user
-        like_value = len(product_save.like_products.all())
-        dislike_value = len(product_save.disklike_products.all())
+        like_value = product_save.like_count
+        dislike_value = product_save.dislike_count
+
         result_dict["methode"] = "render"
         # set method render in key methode
         result_dict["value"] = 'purbeurre/show_product.html'
@@ -234,4 +297,8 @@ def like_dislike_services(request):
     context = {"text": "like dislake save",
                "like": like_value,
                "dislike": dislike_value}
+
+    product_select.like_count = like_value
+    product_select.dislike_count = dislike_value
+    product_select.save()
     return context

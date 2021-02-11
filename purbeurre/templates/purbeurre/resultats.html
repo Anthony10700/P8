@@ -85,7 +85,7 @@
                 <ul class="pagination justify-content-center">
                     {% if articles_list.has_previous %}
                     <li style="padding-right: 20px;">
-                        <a href="?page={{ articles_list.previous_page_number }}&search={{ aliment_search}}">
+                        <a href="?page={{ articles_list.previous_page_number }}&{{ str_dict_return_param}}">
                             <button class="btn page-link">Précédent</button>
                         </a>
 
@@ -93,7 +93,7 @@
 
                     {% endif %} {% if articles_list.has_next %}
                     <li>
-                        <a href="?page={{ articles_list.next_page_number }}&search={{ aliment_search}}">
+                        <a href="?page={{ articles_list.next_page_number }}&{{ str_dict_return_param}}">
                             <button class="btn page-link ">Suivant</button>
                         </a>
                     </li>
