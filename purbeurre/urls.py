@@ -6,13 +6,13 @@ from django.urls import path
 from . import views
 
 
-def trigger_error(request):
-    """Methode fgfor sentry test
+# def trigger_error(request):
+#     """Methode fgfor sentry test
 
-    Args:
-        request ([type]): [description]
-    """
-    division_by_zero = 1 / 0
+#     Args:
+#         request ([type]): [description]
+#     """
+#     division_by_zero = 1 / 0
 
 
 urlpatterns = [
@@ -21,6 +21,6 @@ urlpatterns = [
     path('unsave.html', views.unsave, name="unsave"),
     path('legal_notice.html', views.legale, name="legal_notice"),
     path('index.html', views.index, name="index"),
-    path('sentry-debug/', trigger_error),
+    # path('sentry-debug/', trigger_error),
     path('like_dislike/', views.like_dislike, name="like_dislike")
 ]
