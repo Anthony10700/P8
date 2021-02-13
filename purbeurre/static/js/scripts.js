@@ -149,6 +149,10 @@
         document.getElementById('like_limit_2').click();
 
     }
+    if (getAllUrlParams().search != undefined) {
+        document.getElementById('search-nav').value = getAllUrlParams().search;
+
+    }
 
     function getAllUrlParams(url) {
         var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
