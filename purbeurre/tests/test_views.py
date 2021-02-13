@@ -116,7 +116,7 @@ class UrlPurbeurreTests(TestCase):
 
     def test_seek_search_selenium(self):
         """test search product with selenium no auth
-        """        
+        """
         self.browser.get('http://127.0.0.1:8000/purbeurre/index.html')
         elem = self.browser.find_element_by_id('search-nav')
         elem.send_keys('boisson' + Keys.RETURN)
